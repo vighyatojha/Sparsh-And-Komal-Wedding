@@ -185,6 +185,37 @@ button,a,input,select,textarea{font:inherit}
   .scr.flip-out,.scr.flip-in{animation:none}
 }
 
+
+/* ---- curtain transition + wedding dressing for the Are-you-excited page ---- */
+#curtain{position:absolute;inset:0;z-index:20;pointer-events:none;overflow:hidden}
+.cur{position:absolute;top:0;bottom:0;width:51%;transition:transform .75s cubic-bezier(.7,0,.25,1);
+  background:linear-gradient(180deg,rgba(0,0,0,.25),rgba(0,0,0,0) 18%),repeating-linear-gradient(90deg,#5a0f20 0 6px,#7c1d33 6px 22px,#931f3a 22px 30px,#6a1226 30px 40px);box-shadow:0 0 40px rgba(0,0,0,.4)}
+.cur.l{left:0;transform:translateX(-103%)}.cur.r{right:0;transform:translateX(103%)}
+.cur::after{content:"";position:absolute;top:0;bottom:0;width:9px;background:linear-gradient(90deg,#b88a2e,#f0d58c,#b88a2e)}
+.cur.l::after{right:0}.cur.r::after{left:0}
+.cur-top{position:absolute;top:0;left:0;right:0;transform:translateY(-110%);transition:transform .6s cubic-bezier(.7,0,.25,1)}
+#curtain.close .cur{transform:none}
+#curtain.close .cur-top{transform:none;transition-delay:.2s}
+.gate .gate-card{opacity:0;transform:scale(.9);transition:opacity .8s .2s,transform 1s .2s cubic-bezier(.2,.9,.3,1.05);z-index:2}
+.gate.ready .gate-card{opacity:1;transform:none}
+.g-deco{position:absolute;inset:0;pointer-events:none}
+.g-deco>*{position:absolute}
+.g-toran{top:0;left:0;right:0;z-index:4;transform:translateY(-110%);transition:transform .9s .35s cubic-bezier(.2,.9,.3,1)}
+.g-bell{top:0;z-index:4;width:min(7vw,38px);transform:translateY(-110%);transition:transform 1s cubic-bezier(.2,.9,.3,1.2)}
+.gb1{left:3%;transition-delay:.55s}.gb2{left:11%;transition-delay:.7s}.gb3{right:11%;transition-delay:.75s}.gb4{right:3%;transition-delay:.6s}
+.g-fig{bottom:calc(env(safe-area-inset-bottom,0px) + 1svh);width:min(22vw,20svh);z-index:3;transition:transform 1s .5s cubic-bezier(.2,.9,.3,1)}
+.gl{left:-2vw;transform:translateX(-130%)}.gr{right:-2vw;transform:translateX(130%)}
+.g-diyas{left:0;right:0;bottom:calc(env(safe-area-inset-bottom,0px) + .6svh);display:flex;justify-content:center;gap:min(5vw,40px);z-index:3;transform:translateY(140%);transition:transform .8s .8s cubic-bezier(.2,.9,.3,1)}
+.g-diyas>div{width:min(9vw,48px)}
+.g-petals.petals{position:absolute;z-index:5;opacity:0;transition:opacity 1s 1s}
+.gate.ready .g-toran,.gate.ready .g-bell,.gate.ready .g-fig,.gate.ready .g-diyas{transform:none}
+.gate.ready .g-petals{opacity:1}
+.g-deco svg{width:100%;height:auto;display:block}
+@media (min-width:900px) and (min-aspect-ratio:1/1){
+  .gl{left:calc(50% - 33.4svh - 24svh)}.gr{right:calc(50% - 33.4svh - 24svh)}
+  .g-fig{width:22svh;z-index:3}
+  .gb1{left:12%}.gb2{left:20%}.gb3{right:20%}.gb4{right:12%}
+}
 /* ============ FRAMES (drawn) ============ */
 .frm{position:relative;width:min(84vw,380px)}
 .frm.arch{aspect-ratio:320/250}.frm.pearl{aspect-ratio:320/200}.frm.cusp{aspect-ratio:320/236}
@@ -538,6 +569,15 @@ footer{position:relative;z-index:2;text-align:center;padding:18px var(--gut-r) c
       <button class="gbtn yes" id="yesBtn">YES!</button>
       <button class="gbtn no" id="noBtn">NO</button>
     </div>
+    <div class="g-deco" aria-hidden="true">
+      <div class="g-petals petals"></div>
+      <div class="g-fig gl" data-art="dhol"></div>
+      <div class="g-fig gr" data-art="shehnai"></div>
+      <div class="g-diyas"><div data-art="diya"></div><div data-art="diya"></div><div data-art="diya"></div><div data-art="diya"></div><div data-art="diya"></div></div>
+      <div class="g-bell gb1" data-art="bell:60"></div><div class="g-bell gb2" data-art="bell:110"></div>
+      <div class="g-bell gb3" data-art="bell:110"></div><div class="g-bell gb4" data-art="bell:60"></div>
+      <div class="g-toran toran"></div>
+    </div>
   </div>
 
   <div class="scr p-nope" data-i="5" data-kind="nope">
@@ -553,6 +593,7 @@ footer{position:relative;z-index:2;text-align:center;padding:18px var(--gut-r) c
       </div>
     </div>
   </div>
+  <div id="curtain" aria-hidden="true"><div class="cur l"></div><div class="cur r"></div><div class="cur-top toran"></div></div>
   <div class="yay" id="yay"><b>Yayyy!</b></div>
 </div>
 
@@ -1033,6 +1074,7 @@ function resetPage(s){
   s.querySelectorAll('.write').forEach(e => e.classList.remove('done'));
   s.querySelectorAll('.fadein').forEach(e => e.classList.add('pre'));
   s.querySelectorAll('.pola,.dood').forEach(e => e.classList.remove('in'));
+  s.classList.remove('ready');
   const img = s.querySelector('.reveal');
   if (img && !reduce) { img.classList.remove('in'); const g = 'radial-gradient(circle, transparent 0, transparent 100%)'; img.style.webkitMaskImage = g; img.style.maskImage = g; }
 }
@@ -1045,6 +1087,15 @@ function showPage(i, how){
     setTimeout(() => from.classList.remove('on', 'exit-left', 'exit-down'), 520);
   } else { next.classList.add('on'); if (from) from.classList.remove('on'); }
   cur = i;
+}
+function toGate(){
+  const c = $('#curtain'), g = screens[4];
+  if (reduce) { showPage(4); g.classList.add('ready'); return; }
+  c.classList.add('close');
+  setTimeout(() => {
+    showPage(4); g.classList.remove('ready'); void g.offsetWidth;
+    setTimeout(() => { c.classList.remove('close'); g.classList.add('ready'); }, 250);
+  }, 800);
 }
 function typeOver(el, text, secs, id){
   const chars = [...text], step = secs * 1000 / Math.max(1, chars.length);
@@ -1086,7 +1137,7 @@ function cues(){
     [18.20, () => pS.querySelector('.n2').classList.add('done')],
     [18.40, () => pS.querySelector('.hashb').classList.remove('pre')],
     [18.60, id => typeOver(pS.querySelector('.js-date'), data.dateLongCaps, .45, id)],
-    [24.40, () => showPage(4)]
+    [24.40, () => toGate()]
   ];
   [1.8, 2.8, 3.8, 5.0].forEach((t, k) => CONFIG.brideTags[k] && c.push([t, () => tag(pB, CONFIG.brideTags[k])]));
   [8.6, 9.4, 10.4, 11.4, 12.2].forEach((t, k) => CONFIG.groomTags[k] && c.push([t, () => tag(pG, CONFIG.groomTags[k])]));
@@ -1208,6 +1259,7 @@ function buildWa(){
 $('#rsvpForm').addEventListener('submit', e => e.preventDefault());
 buildWa();
 
+if (!reduce) { const gp = $('.g-petals'); for (let i = 0; i < 16; i++) { const e = document.createElement('i'); e.style.left = (Math.random() * 100) + '%'; e.style.animationDuration = (7 + Math.random() * 7) + 's'; e.style.animationDelay = (-Math.random() * 14) + 's'; gp.appendChild(e); } }
 if (!reduce) { const p = $('#petals'); const n = matchMedia(DESK).matches ? 26 : 14;
   for (let i = 0; i < n; i++) { const e = document.createElement('i'); e.style.left = (Math.random() * 100) + '%'; e.style.animationDuration = (10 + Math.random() * 10) + 's'; e.style.animationDelay = (-Math.random() * 20) + 's'; p.appendChild(e); } }
 
