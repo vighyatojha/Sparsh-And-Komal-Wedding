@@ -53,7 +53,11 @@ button,a,input,select,textarea{font:inherit}
 .bk-front .pat{position:absolute;inset:0;opacity:.13;background-image:radial-gradient(circle at 25% 25%,#f0d58c 1.2px,transparent 1.6px),radial-gradient(circle at 75% 75%,#f0d58c 1.2px,transparent 1.6px);background-size:26px 26px;pointer-events:none}
 .bk-front>*{position:relative}
 .bk-front .crest{width:min(64vw,330px);filter:drop-shadow(0 2px 4px rgba(0,0,0,.35))}
-.bk-eyebrow{margin:0;font-family:var(--f-serif);font-weight:700;letter-spacing:.42em;text-transform:uppercase;font-size:clamp(13px,1.8svh,17px);color:var(--gold-l)}
+.bk-eyebrow{margin:0;font-family:var(--f-serif);font-weight:700;letter-spacing:.36em;text-transform:uppercase;font-size:clamp(20px,3svh,30px);color:#f6dd9a;text-shadow:0 2px 8px rgba(0,0,0,.35);padding-left:.36em}
+.gan{position:relative;height:min(34svh,64vw,340px);aspect-ratio:513/640;display:grid;place-items:center}
+.gan::before{content:"";position:absolute;inset:-6% -14%;border-radius:50%;background:radial-gradient(circle,rgba(255,214,120,.45),rgba(255,214,120,0) 68%);animation:ganGlow 3s ease-in-out infinite alternate}
+.gan img{position:relative;width:100%;height:100%;object-fit:contain;filter:drop-shadow(0 6px 14px rgba(0,0,0,.45))}
+@keyframes ganGlow{from{opacity:.6;transform:scale(.96)}to{opacity:1;transform:scale(1.04)}}
 .mono{position:relative;width:min(58vw,34svh,300px);aspect-ratio:700/722;display:grid;place-items:center}
 .mono img{position:absolute;inset:0;width:100%;height:100%;animation:spin 50s linear infinite}
 .mono b{font-family:var(--f-script);font-weight:400;font-size:min(15vw,9svh,78px);color:#f6dd9a;line-height:1;text-shadow:0 2px 8px rgba(0,0,0,.35);position:relative;margin-top:-4%}
@@ -562,7 +566,7 @@ footer{position:relative;z-index:2;text-align:center;padding:18px var(--gut-r) c
       <span class="pat" aria-hidden="true"></span>
       <div class="bk-orn" data-art="lotus"></div>
       <p class="bk-eyebrow">Shubh Vivah</p>
-      <div class="mono"><span data-art="mandala"></span><b><span data-k="gi"></span><span data-art="heart"></span><span data-k="bi"></span></b></div>
+      <div class="gan"><img src="img/ganesh.webp" alt="Shri Ganesh"></div>
       <p class="bk-names"><span data-k="groom"></span> <small>weds</small> <span data-k="bride"></span></p>
       <p class="bk-date" data-k="dateDots"></p>
       <div class="bk-orn bot" data-art="lotus"></div>
