@@ -10,7 +10,11 @@ Open `index.html` and find the `CONFIG` block near the bottom (search for `EDIT 
 - `weddingDate` (used for the scratch date, countdown and calendar link)
 - events (name, date/time, place)
 - venue name, address and Google Maps link
-- `whatsapp` — the RSVP number with country code, e.g. `919876543210`
+- `contact` and `mapsUrl` for the venue
+- `showRsvp` — set to `true` (and fill `whatsapp`) to turn on the WhatsApp RSVP form
+
+## Add music
+Drop `intro.mp3` and `main.mp3` into the `music/` folder (see `music/README.md`).
 
 ## Put it online (free) with GitHub Pages
 1. Repo → **Settings → Pages**

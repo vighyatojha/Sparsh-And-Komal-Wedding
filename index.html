@@ -211,6 +211,17 @@ fieldset.field{border:0;margin:0 0 14px;padding:0}
 .wa svg{width:22px;height:22px;fill:currentColor}
 .rsvp .tiny{margin:10px 0 0;text-align:center;font-size:14px;color:#6b5a48}
 
+/* calendar card */
+.calcard{position:relative;width:min(92%,380px);transform:rotate(-2deg);box-shadow:0 22px 46px rgba(30,40,20,.3);border-radius:6px;overflow:hidden}
+.calcard img{width:100%}
+.calcard .beat{position:absolute;left:85.3%;top:54.2%;width:17%;aspect-ratio:1;transform:translate(-50%,-50%);border-radius:50%;
+  box-shadow:0 0 0 0 rgba(200,150,50,.65);animation:beat 1.8s ease-out infinite;pointer-events:none}
+@keyframes beat{0%{box-shadow:0 0 0 0 rgba(200,150,50,.6)}80%,100%{box-shadow:0 0 0 22px rgba(200,150,50,0)}}
+.contact{margin:-6px 0 14px!important;font-size:16px}
+.contact a{color:#ffd98a}
+.music{position:fixed;z-index:60;top:calc(env(safe-area-inset-top,0px) + 22px);right:calc(max(12px,env(safe-area-inset-right,0px)) + (100vw - var(--col))/2);
+  width:40px;height:40px;border:0;border-radius:50%;background:rgba(255,250,240,.92);color:var(--maroon);box-shadow:0 3px 10px rgba(0,0,0,.15);cursor:pointer;font-size:18px}
+.music.off{opacity:.6;text-decoration:line-through}
 .bye .char{margin-top:6px}
 .hash{font-family:var(--f-round);font-weight:800;color:var(--maroon);font-size:26px;margin:0}
 footer{position:relative;z-index:2;width:var(--col);margin-inline:auto;text-align:center;padding:18px 20px calc(env(safe-area-inset-bottom,0px) + 22px);font-family:var(--f-serif);font-style:italic;font-size:16px;color:var(--ivory);background:var(--green)}
@@ -336,12 +347,19 @@ footer{position:relative;z-index:2;width:var(--col);margin-inline:auto;text-alig
     <img class="char wide js-char" src="img/c-varmala.webp" alt="Varmala moment">
   </section>
 
+  <section class="tight" id="s-cal">
+    <div class="calcard js-rise">
+      <img src="img/calendar.webp" alt="November 2026 calendar with the 20th circled in a heart — save the date 20.11.2026">
+      <span class="beat" aria-hidden="true"></span>
+    </div>
+  </section>
+
   <section class="tight" id="s-invite">
     <div class="card invite js-rise">
       <img class="crest" src="img/crest-top.webp" alt="">
       <p class="mantra">॥ श्री गणेशाय नमः ॥</p>
       <p class="small">With the blessings of our elders, we joyfully invite you and your family to the wedding celebrations of</p>
-      <p class="nm" data-k="groom"></p>
+      <p class="nm" data-k="groomFull"></p>
       <p class="of" data-k="groomOf"></p>
       <p class="with">with</p>
       <p class="nm" data-k="bride"></p>
@@ -364,7 +382,7 @@ footer{position:relative;z-index:2;width:var(--col);margin-inline:auto;text-alig
 
   <section class="tight" id="s-events">
     <h2 class="sec-title js-rise">Wedding Festivities</h2>
-    <p class="sec-sub js-rise">Five days of colour, music and love</p>
+    <p class="sec-sub js-rise">Three ceremonies, one forever</p>
     <div class="events" id="events"></div>
   </section>
 
@@ -375,6 +393,7 @@ footer{position:relative;z-index:2;width:var(--col);margin-inline:auto;text-alig
       <div class="over">
         <h3 data-k="venueName"></h3>
         <p data-k="venueAddr"></p>
+        <p class="contact" id="contactLine"></p>
         <a class="btn-gold" id="mapLink" target="_blank" rel="noopener">📍 Get Directions</a>
       </div>
     </div>
@@ -418,6 +437,7 @@ footer{position:relative;z-index:2;width:var(--col);margin-inline:auto;text-alig
 </main>
 <footer>Made with love by the family ♡</footer>
 <button class="replay" id="replay" hidden aria-label="Replay the intro" title="Replay intro">↺</button>
+<button class="music" id="musicBtn" hidden aria-label="Mute music" title="Music on/off">♪</button>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
@@ -427,27 +447,29 @@ footer{position:relative;z-index:2;width:var(--col);margin-inline:auto;text-alig
    EDIT YOUR DETAILS HERE — everything on the page reads from this
    ====================================================== */
 const CONFIG = {
-  groom: "Sparsh",
+  groom: "Sparsh",                 // short name used in the intro & headings
   bride: "Komal",
+  groomFull: "Kumar Sparsh",       // full name on the invitation card
   groomLine1: "Ghar ka ladla",
   groomLine2: "Hard to satisfy",
   brideLine1: "Ghar ki pari",
   brideLine2: "Social butterfly",
-  groomOf: "Son of Mr. & Mrs. ________",      // leave "" to hide
-  brideOf: "Daughter of Mr. & Mrs. ________", // leave "" to hide
-  weddingDate: "2026-11-25T19:00:00+05:30",   // main wedding date & time (India time)
+  groomOf: "S/o Manoj Kumar Upadhyay & Sunila Upadhyay",
+  brideOf: "D/o Vishwanath Sharma & Manju Devi",
+  weddingDate: "2026-11-20T00:00:00+05:30",   // wedding day (India time); add the muhurat time when known
   hashtag: "#SparshKiKomal",
-  venueName: "The Royal Gardens",
-  venueAddr: "Venue address, City, State",
-  mapsUrl: "",                                // paste Google Maps link; blank = search by name
-  whatsapp: "",                               // RSVP number with country code, e.g. "919876543210"
-  rsvpBy: "Kindly reply by 10 November 2026",
+  venueName: "Ganga Vatika Marriage Hall",
+  venueAddr: "Janta Road, Gardanibagh, Patna",
+  contact: "7004265262",
+  mapsUrl: "https://maps.app.goo.gl/uYPgcxHfHSTcJ5eb8",
+  showRsvp: false,                            // RSVP on hold — set true to show the WhatsApp RSVP form
+  whatsapp: "",                               // RSVP number with country code, e.g. "917004265262"
+  rsvpBy: "",
+  music: { intro: "music/intro.mp3", main: "music/main.mp3" },  // drop the MP3s into a /music folder; missing files are skipped
   events: [
-    { name:"Haldi",     img:"e-haldi",     when:"23 Nov · 10:00 AM", where:"Home lawns",        vibe:"Wear yellow, get messy!" },
-    { name:"Mehendi",   img:"e-mehendi",   when:"23 Nov · 4:00 PM",  where:"Home lawns",        vibe:"Greens & mehendi stories" },
-    { name:"Sangeet",   img:"e-sangeet",   when:"24 Nov · 7:00 PM",  where:"The Royal Gardens", vibe:"Bring your best dance moves" },
-    { name:"Wedding",   img:"e-wedding",   when:"25 Nov · 7:00 PM",  where:"The Royal Gardens", vibe:"Phere under the stars" },
-    { name:"Reception", img:"e-reception", when:"26 Nov · 7:30 PM",  where:"The Royal Gardens", vibe:"Dinner, toasts & blessings" }
+    { name:"Shubh Tilak",          img:"e-sangeet", when:"Tuesday, 17 Nov 2026",   where:"", vibe:"Blessings for the groom" },
+    { name:"Janeu & Haldi Kalash", img:"e-haldi",   when:"Wednesday, 18 Nov 2026", where:"", vibe:"Sacred thread & haldi rituals" },
+    { name:"Wedding",              img:"e-wedding", when:"Friday, 20 Nov 2026",    where:"Ganga Vatika Marriage Hall", vibe:"Saat phere, saat vachan" }
   ]
 };
 /* ====================================================== */
@@ -477,6 +499,7 @@ screens.forEach(s => {
   const i = +s.dataset.i;
   if (i > 3) return;
   const go = e => {
+    if (i === 0 && !current && typeof playTrack === 'function') playTrack('intro');
     const back = e.clientX && e.clientX < innerWidth * 0.28 && i > 0;
     show(back ? i - 1 : i + 1);
   };
@@ -505,7 +528,7 @@ function burst(){
 }
 let opened = false;
 function sayYes(){
-  $('#yay').classList.add('on'); burst();
+  $('#yay').classList.add('on'); burst(); playTrack('main');
   setTimeout(() => {
     $('#intro').classList.add('gone');
     document.body.classList.remove('locked');
@@ -531,15 +554,40 @@ CONFIG.events.forEach(ev => {
     <div class="info"><h3></h3><p class="when"></p><p class="where"></p><p class="vibe"></p></div>`;
   el.querySelector('h3').textContent = ev.name;
   el.querySelector('.when').textContent = ev.when;
-  el.querySelector('.where').textContent = '📍 ' + ev.where;
+  if (ev.where) el.querySelector('.where').textContent = '📍 ' + ev.where; else el.querySelector('.where').remove();
   el.querySelector('.vibe').textContent = ev.vibe;
   evWrap.appendChild(el);
 });
 
 $('#mapLink').href = CONFIG.mapsUrl || 'https://www.google.com/maps/search/?api=1&query=' + encodeURIComponent(CONFIG.venueName + ' ' + CONFIG.venueAddr);
-const z = d => d.toISOString().replace(/[-:]/g, '').replace(/\.\d+/, '');
+const ymd = d => new Intl.DateTimeFormat('en-CA', {timeZone:'Asia/Kolkata'}).format(d).replace(/-/g, '');
 $('#calLink').href = 'https://calendar.google.com/calendar/render?action=TEMPLATE&text=' + encodeURIComponent(`${CONFIG.groom} & ${CONFIG.bride}'s Wedding`) +
-  '&dates=' + z(W) + '/' + z(new Date(W.getTime() + 5 * 3600e3)) + '&location=' + encodeURIComponent(CONFIG.venueName + ', ' + CONFIG.venueAddr);
+  '&dates=' + ymd(W) + '/' + ymd(new Date(W.getTime() + 86400e3)) + '&location=' + encodeURIComponent(CONFIG.venueName + ', ' + CONFIG.venueAddr);
+if (CONFIG.contact) { const c = $('#contactLine'); c.textContent = 'Contact: '; const a = document.createElement('a'); a.href = 'tel:+91' + CONFIG.contact; a.textContent = CONFIG.contact; c.appendChild(a); }
+if (!CONFIG.showRsvp) $('#s-rsvp').hidden = true;
+
+/* music: intro track starts on the first tap, main track after YES */
+const tracks = {}; let current = null, muted = false;
+function track(k){
+  const src = CONFIG.music && CONFIG.music[k]; if (!src) return null;
+  if (!tracks[k]) { const a = new Audio(src); a.loop = true; a.preload = 'auto';
+    a.addEventListener('error', () => { a.dead = true; if (current === a) { current = null; $('#musicBtn').hidden = true; } });
+    tracks[k] = a; }
+  return tracks[k].dead ? null : tracks[k];
+}
+function fade(a, to, ms, done){ const from = a.volume, t0 = performance.now();
+  (function step(t){ const p = Math.min(1, (t - t0) / ms); a.volume = from + (to - from) * p; p < 1 ? requestAnimationFrame(step) : done && done(); })(t0); }
+function playTrack(k){
+  const a = track(k);
+  if (current && current !== a) { const old = current; fade(old, 0, 900, () => old.pause()); }
+  current = a; if (!a || muted) return;
+  a.volume = 0; a.currentTime = 0;
+  a.play().then(() => { $('#musicBtn').hidden = false; fade(a, .85, 1200); }).catch(() => {});
+}
+$('#musicBtn').addEventListener('click', () => {
+  muted = !muted; $('#musicBtn').classList.toggle('off', muted); $('#musicBtn').setAttribute('aria-label', muted ? 'Play music' : 'Mute music');
+  if (!current) return; if (muted) current.pause(); else { current.volume = .85; current.play().catch(() => {}); }
+});
 
 /* countdown */
 const pad = n => String(n).padStart(2, '0');
