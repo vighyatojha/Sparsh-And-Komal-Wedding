@@ -216,6 +216,62 @@ button,a,input,select,textarea{font:inherit}
   .g-fig{width:22svh;z-index:3}
   .gb1{left:12%}.gb2{left:20%}.gb3{right:20%}.gb4{right:12%}
 }
+
+/* couple page dressing */
+.stk{width:auto!important;aspect-ratio:auto!important}
+.seal{width:calc(var(--fh) * .085)!important;aspect-ratio:1!important;border-radius:50%;display:grid;grid-auto-flow:column;place-content:center;gap:0;
+  background:radial-gradient(circle at 35% 30%,#b02a48,#7c1d33 60%,#5a0f20);box-shadow:0 4px 10px rgba(60,10,20,.4),inset 0 0 0 3px rgba(240,213,140,.55);
+  font-family:var(--f-script);font-size:calc(var(--fh) * .025);color:#f6dd9a;rotate:-8deg;line-height:1}
+.seal .ico{width:.5em;height:.5em;color:#f0d58c;margin:0 .04em}
+.ticket{background:#fffaf0;border:1.5px dashed #b88a2e;padding:.5em .9em;rotate:-6deg;box-shadow:0 6px 14px rgba(60,30,20,.22);text-align:center;font-size:calc(var(--fh) * .014)}
+.ticket small{display:block;font-family:var(--f-type);letter-spacing:.2em;text-transform:uppercase;color:var(--maroon);font-size:.85em}
+.ticket b{display:block;font-family:var(--f-round);font-weight:800;color:var(--green);font-size:1.7em;letter-spacing:.06em;white-space:nowrap}
+.mari{width:calc(var(--fh) * .05)!important;aspect-ratio:1!important;border-radius:50%;
+  background:radial-gradient(circle,#ffd447 0 18%,transparent 19%),repeating-conic-gradient(from 0deg,#ff8a00 0 10deg,#ffb020 10deg 20deg);
+  -webkit-mask:radial-gradient(circle,#000 62%,transparent 64%);mask:radial-gradient(circle,#000 62%,transparent 64%);box-shadow:0 2px 6px rgba(0,0,0,.2)}
+.cp-side{display:none}
+@media (min-aspect-ratio:1/1){
+  .cp-side{aspect-ratio:auto!important;height:auto;display:flex;flex-direction:column;align-items:center;gap:.35em;position:absolute;top:50%;width:min(26vw,320px);z-index:3;
+    background:rgba(255,250,240,.92);border:1px solid rgba(184,138,46,.5);outline:3px double #b88a2e;outline-offset:-9px;padding:2.2em 1.6em;
+    box-shadow:0 18px 40px rgba(60,30,20,.2);text-align:center;font-size:clamp(13px,1.6svh,17px);opacity:0;transition:transform .9s cubic-bezier(.2,.9,.3,1),opacity .6s}
+  .cp-side.left{right:calc(50% + 28.1svh + 3vw);transform:translate(-40px,-50%) rotate(-2deg)}
+  .cp-side.right{left:calc(50% + 28.1svh + 3vw);transform:translate(40px,-50%) rotate(2deg)}
+  .cp-side.in{opacity:1}
+  .cp-side.left.in{transform:translate(0,-50%) rotate(-2deg)}.cp-side.right.in{transform:translate(0,-50%) rotate(2deg)}
+  .cp-side p{margin:0}
+  .cs-k{font-family:var(--f-type);letter-spacing:.24em;text-transform:uppercase;color:var(--maroon);font-size:.85em}
+  .cs-n{font-family:var(--f-script);color:var(--maroon);font-size:2.4em;line-height:1.05}
+  .cs-s{font-family:var(--f-serif);font-style:italic;color:#5a4636;font-size:1.05em;line-height:1.35}
+  .cs-big{font-family:var(--f-round);font-weight:800;color:var(--green);font-size:4.4em;line-height:.9}
+  .cs-orn{width:70%;margin:.6em 0}.cs-orn svg{width:100%;height:auto;display:block}
+}
+/* "meet" moment */
+.meetword{top:40%!important;left:var(--safe)!important;right:var(--safe)!important;text-align:center!important;font-size:calc(var(--fh) * .085)!important;color:var(--maroon)!important}
+.meetorn{position:absolute;left:0;right:0;top:50%;display:flex;justify-content:center;opacity:0;transition:opacity .3s,transform .4s cubic-bezier(.6,0,.3,1)}
+.meetorn>span{width:58%;display:block}.meetorn svg{width:100%;height:auto;display:block}
+.meetorn i{position:absolute;width:calc(var(--fh) * .03);aspect-ratio:1;background:var(--rose);-webkit-mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M12 21s-7.5-4.6-9.6-9.2C.9 8.4 3 4.5 6.7 4.5c2.2 0 3.6 1.3 5.3 3.2 1.7-1.9 3.1-3.2 5.3-3.2 3.7 0 5.8 3.9 4.3 7.3C19.5 16.4 12 21 12 21z'/%3E%3C/svg%3E") center/contain no-repeat;mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M12 21s-7.5-4.6-9.6-9.2C.9 8.4 3 4.5 6.7 4.5c2.2 0 3.6 1.3 5.3 3.2 1.7-1.9 3.1-3.2 5.3-3.2 3.7 0 5.8 3.9 4.3 7.3C19.5 16.4 12 21 12 21z'/%3E%3C/svg%3E") center/contain no-repeat;animation:mh 1s ease-out infinite}
+.meetorn i:nth-of-type(1){left:22%;top:-9svh}.meetorn i:nth-of-type(2){right:20%;top:-14svh;animation-delay:.2s;background:var(--maroon)}
+.meetorn i:nth-of-type(3){left:30%;top:4svh;animation-delay:.35s}.meetorn i:nth-of-type(4){right:28%;top:3svh;animation-delay:.5s;background:#e2bf6c}
+.meetorn i:nth-of-type(5){left:50%;top:-18svh;animation-delay:.1s;background:#e2bf6c}
+@keyframes mh{0%{transform:scale(.2) translateY(10px);opacity:0}40%{opacity:1}100%{transform:scale(1) translateY(-14px);opacity:0}}
+.meetword:not(:empty)+.meetorn{opacity:1}
+.meetword.gone+.meetorn{transform:translateX(-120vw)}
+
+/* family & blessings */
+.family{width:min(100%,760px);text-align:center}
+.family .couplet{margin:0 0 6px;font-family:var(--f-serif);font-weight:600;font-size:clamp(17px,4.4vw,21px);line-height:1.5;color:var(--maroon)}
+.family .couplet-en{margin:0 0 18px;font-style:italic;font-size:15px;color:#6b5a48}
+.fam-grid{display:grid;grid-template-columns:1fr;gap:18px;margin-top:8px}
+.fam{padding:16px 10px;border-top:1px solid rgba(184,138,46,.45)}
+.fam h4{margin:0 0 6px;font-family:var(--f-type);font-weight:700;letter-spacing:.22em;text-transform:uppercase;font-size:12px;color:var(--maroon)}
+.fam .hn{margin:0;font-family:var(--f-serif);font-weight:700;font-size:20px;color:var(--green)}
+.fam .en{margin:2px 0 0;font-size:16px;color:#3d3128}
+.fam .sm{margin:4px 0 0;font-style:italic;font-size:14px;color:#6b5a48}
+.fam .tel{margin:8px 0 0;font-family:var(--f-round);font-weight:700;color:var(--maroon);font-size:16px;letter-spacing:.03em}
+.ev .hi{margin:-2px 0 6px!important;font-family:var(--f-serif);font-weight:700;color:var(--maroon);font-size:15px!important;line-height:1.35}
+.baraat{margin:14px 0 0!important;padding:12px 14px;border-radius:12px;background:rgba(124,29,51,.06);font-size:15.5px!important;line-height:1.45!important;text-align:left}
+.baraat b{color:var(--maroon)}
+@media (min-width:700px){.fam-grid{grid-template-columns:1fr 1fr}}
 /* ============ FRAMES (drawn) ============ */
 .frm{position:relative;width:min(84vw,380px)}
 .frm.arch{aspect-ratio:320/250}.frm.pearl{aspect-ratio:320/200}.frm.cusp{aspect-ratio:320/236}
@@ -531,6 +587,7 @@ footer{position:relative;z-index:2;text-align:center;padding:18px var(--gut-r) c
     <div class="frame l">
       <picture><source media="(min-aspect-ratio: 1/1)" srcset="img/groom-l.webp"><img class="bg reveal" src="img/groom-p.webp" alt="The groom, Sparsh"></picture>
       <p class="t meetword"></p>
+      <div class="meetorn" aria-hidden="true"><span data-art="lotus"></span><i></i><i></i><i></i><i></i><i></i></div>
       <p class="t hand js-line1"></p>
       <p class="t hand-sm"><span class="js-line2"></span></p>
     </div>
@@ -538,12 +595,20 @@ footer{position:relative;z-index:2;text-align:center;padding:18px var(--gut-r) c
 
   <div class="scr p-couple" data-i="2" data-kind="couple" role="button" tabindex="0" aria-label="Next page">
     <img class="side" src="img/paper-p.webp" alt="">
+    <div class="cp-side left dood"><p class="cs-k">The groom</p><p class="cs-n" data-k="groomFull"></p><p class="cs-s" data-k="groomOfShort"></p>
+      <div class="cs-orn" data-art="lotus"></div><p class="cs-k">The bride</p><p class="cs-n" data-k="bride"></p><p class="cs-s" data-k="brideOfShort"></p></div>
+    <div class="cp-side right dood"><p class="cs-k">Shubh Vivah</p><p class="cs-big" data-k="dDay"></p><p class="cs-n" style="font-size:1.4em" data-k="dMonthYear"></p><p class="cs-s" data-k="dWeek"></p>
+      <div class="cs-orn" data-art="lotus"></div><p class="cs-s" data-k="venueName"></p><p class="cs-s">Patna</p></div>
     <div class="frame pt">
       <img class="bg" src="img/paper-p.webp" alt="">
       <p class="t meet js-meet"></p>
       <p class="t cw write">Couple</p>
       <div class="pola"><img src="img/couple-toon.webp" alt="Sparsh and Komal as bride and groom"></div>
       <p class="t nm2 write" data-k="names"></p>
+      <div class="dood stk seal" style="right:var(--safe);top:70%"><span data-k="gi"></span><span data-art="heart"></span><span data-k="bi"></span></div>
+      <div class="dood stk ticket" style="left:var(--safe);top:80%"><small>Save the date</small><b data-k="dateDots"></b></div>
+      <div class="dood stk mari" style="left:12%;top:24.5%"></div>
+      <div class="dood stk mari" style="right:13%;top:24%;transform-origin:center"></div>
       <span class="dood" style="left:6%;top:30%"><svg viewBox="0 0 24 24"><path d="M12 21s-7.5-4.6-9.6-9.2C.9 8.4 3 4.5 6.7 4.5c2.2 0 3.6 1.3 5.3 3.2 1.7-1.9 3.1-3.2 5.3-3.2 3.7 0 5.8 3.9 4.3 7.3C19.5 16.4 12 21 12 21z"/></svg></span>
       <span class="dood" style="right:5%;top:40%"><svg viewBox="0 0 24 24"><path d="m12 2 2.9 6.6 7.1.6-5.4 4.7 1.6 7L12 17.3 5.8 21l1.6-7L2 9.2l7.1-.6z"/></svg></span>
       <span class="dood" style="left:7%;top:72%"><svg viewBox="0 0 24 24"><path d="m12 2 2.9 6.6 7.1.6-5.4 4.7 1.6 7L12 17.3 5.8 21l1.6-7L2 9.2l7.1-.6z"/></svg></span>
@@ -679,7 +744,8 @@ footer{position:relative;z-index:2;text-align:center;padding:18px var(--gut-r) c
       <div class="card invite js-rise">
         <div class="crest-svg" data-art="lotus"></div>
         <p class="mantra">॥ श्री गणेशाय नमः ॥</p>
-        <p class="small">With the blessings of our elders, we joyfully invite you and your family to the wedding celebrations of</p>
+        <p class="small" style="margin-top:4px;color:var(--maroon)">वक्रतुण्ड महाकाय सूर्यकोटि समप्रभः ।<br>निर्विघ्नं कुरु मे देव सर्वकार्येषु सर्वदा ॥</p>
+        <p class="small">By the boundless grace of the Almighty and with the blessings of our elders, we joyfully invite you and your family to the sacred wedding of</p>
         <p class="nm" data-k="groomFull"></p>
         <p class="of" data-k="groomOf"></p>
         <p class="with">with</p>
@@ -701,6 +767,19 @@ footer{position:relative;z-index:2;text-align:center;padding:18px var(--gut-r) c
     </div>
   </section>
 
+  <section class="flow" id="s-family">
+    <div class="lotus-d js-rise" data-art="lotus"></div>
+    <div class="card family js-rise">
+      <p class="mantra">मंगलम् भगवान विष्णुः, मंगलम् गरुड़ध्वजः ।<br>मंगलम् पुण्डरीकाक्षः, मंगलाय तनो हरिः ॥</p>
+      <p class="couplet" style="margin-top:14px">भेज रहा हूँ स्नेह निमंत्रण, प्रियवर तुझे बुलाने को,<br>हे मानस के राजहंस, आप भूल न जाना आने को ॥</p>
+      <p class="couplet-en">With love we send this invitation, dear one. Do not forget to come.</p>
+      <div class="fam-grid">
+        <div class="fam"><h4>Darshanabhilashi · दर्शनाभिलाषी</h4><p class="hn">श्री राजन कुमार उपाध्याय</p><p class="en">Shri Rajan Kumar Upadhyay</p><p class="sm">Retd. Deputy Director, Department of Industries, Bihar, Patna</p><p class="sm">एवं समस्त परिवार · and the entire family</p></div>
+        <div class="fam"><h4>Aakankshi · आकांक्षी</h4><p class="hn">श्री मनोज कुमार उपाध्याय</p><p class="en">Shri Manoj Kumar Upadhyay</p><p class="tel" id="famTel"></p></div>
+      </div>
+    </div>
+  </section>
+
   <section class="flow" id="s-events">
     <div class="lotus-d js-rise" data-art="lotus"></div>
     <h2 class="sec-title js-rise">Wedding Festivities</h2>
@@ -717,6 +796,7 @@ footer{position:relative;z-index:2;text-align:center;padding:18px var(--gut-r) c
         <h3 data-k="venueName"></h3>
         <p data-k="venueAddr"></p>
         <p class="contact" id="contactLine"></p>
+        <p class="baraat"><b>Baraat route:</b> The baraat leaves our home at Brahmpur, gathers near Kachchi Talab, Gardanibagh, and proceeds to Ganga Vatika Marriage Hall, where all the wedding ceremonies take place.</p>
         <a class="btn-gold" id="mapLink" target="_blank" rel="noopener"><span data-art="pin"></span> Get Directions</a>
       </div>
     </div>
@@ -797,21 +877,24 @@ const CONFIG = {
   brideTags: ["Pampered", "Social butterfly", "Curious mind", "Unapologetically herself"],  // cycle under "Ghar ki choti beti"
   groomTags: ["Responsible", "Temperamental", "Hard to satisfy", "Thoughtful", "Practical"],              // cycle under "Ghar ka eklauta beta"
   story: "After thoughtful conversations, family blessings and a little bit of destiny… we said YES to forever.",
-  groomOf: "S/o Manoj Kumar Upadhyay & Sunila Upadhyay",
-  brideOf: "D/o Vishwanath Sharma & Manju Devi",
+  groomOf: "S/o Shri Manoj Kumar Upadhyay & Late Smt. Sunila Upadhyay",
+  groomOfShort: "S/o Shri Manoj Kumar Upadhyay",
+  brideOf: "D/o Shri Vishwanath Sharma & Smt. Manju Devi",
+  brideOfShort: "D/o Shri Vishwanath Sharma & Smt. Manju Devi",
   weddingDate: "2026-11-20T00:00:00+05:30",   // wedding day (India time); add the muhurat time when known
   hashtag: "#SparshKiKomal",
   venueName: "Ganga Vatika Marriage Hall",
   venueAddr: "Janta Road, Gardanibagh, Patna",
   contact: "7004265262",
+  contact2: "9334906489",
   mapsUrl: "https://maps.app.goo.gl/uYPgcxHfHSTcJ5eb8",
   showRsvp: false,                            // RSVP on hold — set true to show the WhatsApp RSVP form
   whatsapp: "",                               // RSVP number with country code, e.g. "917004265262"
   music: { intro: "music/intro.mp3", main: "music/main.mp3" },  // drop the MP3s into a /music folder; missing files are skipped
   events: [
-    { name:"Shubh Tilak",          img:"e-sangeet", when:"Tuesday, 17 Nov 2026",   where:"", vibe:"Blessings for the groom" },
-    { name:"Janeu & Haldi Kalash", img:"e-haldi",   when:"Wednesday, 18 Nov 2026", where:"", vibe:"Sacred thread & haldi rituals" },
-    { name:"Wedding",              img:"e-wedding", when:"Friday, 20 Nov 2026",    where:"Ganga Vatika Marriage Hall", vibe:"Saat phere, saat vachan" }
+    { name:"Dhanbatti Pujan", hi:"धनबट्टी पूजन", img:"e-sangeet", when:"Tuesday, 17 Nov 2026", where:"", vibe:"The celebrations begin with puja and blessings" },
+    { name:"Satyanarayan Pujan, Janeu & Haldi Kalash", hi:"सत्यनारायण पूजन, जनेऊ एवं हल्दी कलश", img:"e-haldi", when:"Wednesday, 18 Nov 2026", where:"", vibe:"Katha, the sacred thread and haldi" },
+    { name:"Baraat & Shubh Vivah", hi:"बारात प्रस्थान, वर-वधु स्वागत, प्रीतिभोज एवं रात्रि में शुभ विवाह", img:"e-wedding", when:"Friday, 20 Nov 2026", where:"Ganga Vatika Marriage Hall", vibe:"Baraat, var-vadhu swagat, preetibhoj, and the pheras at night" }
   ]
 };
 /* ====================================================== */
@@ -831,6 +914,7 @@ const data = {
   dateLong: fmt({weekday:'long', day:'numeric', month:'long', year:'numeric'}),
   gi: CONFIG.groom[0], bi: CONFIG.bride[0],
   dateLongCaps: fmt({day:'numeric', month:'long', year:'numeric'}).toUpperCase(),
+  dMonthYear: fmt({month:'long', year:'numeric'}),
   dateDots: fmt({day:'2-digit'}) + ' · ' + fmt({month:'2-digit'}) + ' · ' + fmt({year:'numeric'})
 };
 $$('[data-k]').forEach(el => { const v = data[el.dataset.k]; if (v) el.textContent = v; else if (v === '') el.hidden = true; });
@@ -1228,6 +1312,7 @@ CONFIG.events.forEach(ev => {
   el.innerHTML = `<div class="win"><img src="img/${ev.img}.webp" alt=""></div><div class="info"><h3></h3><p class="when"></p><p class="where"></p><p class="vibe"></p></div>`;
   el.querySelector('img').alt = ev.name + ' illustration';
   el.querySelector('h3').textContent = ev.name;
+  if (ev.hi) { const h = document.createElement('p'); h.className = 'hi'; h.textContent = ev.hi; el.querySelector('h3').after(h); }
   el.querySelector('.when').textContent = ev.when;
   if (ev.where) el.querySelector('.where').innerHTML = ART.pin() + ' ' + ev.where.replace(/[<&]/g, ''); else el.querySelector('.where').remove();
   el.querySelector('.vibe').textContent = ev.vibe;
@@ -1237,7 +1322,8 @@ $('#mapLink').href = CONFIG.mapsUrl || 'https://www.google.com/maps/search/?api=
 const ymd = d => new Intl.DateTimeFormat('en-CA', {timeZone:'Asia/Kolkata'}).format(d).replace(/-/g, '');
 $('#calLink').href = 'https://calendar.google.com/calendar/render?action=TEMPLATE&text=' + encodeURIComponent(`${CONFIG.groom} & ${CONFIG.bride}'s Wedding`) +
   '&dates=' + ymd(W) + '/' + ymd(new Date(W.getTime() + 86400e3)) + '&location=' + encodeURIComponent(CONFIG.venueName + ', ' + CONFIG.venueAddr);
-if (CONFIG.contact) { const c = $('#contactLine'); c.textContent = 'Contact: '; const a = document.createElement('a'); a.href = 'tel:+91' + CONFIG.contact; a.textContent = CONFIG.contact; c.appendChild(a); }
+{ const nums = [CONFIG.contact, CONFIG.contact2].filter(Boolean); const ft = $('#famTel'); if (ft) ft.textContent = 'Mob. ' + nums.join(', '); }
+if (CONFIG.contact) { const c = $('#contactLine'); c.textContent = 'Contact: '; [CONFIG.contact, CONFIG.contact2].filter(Boolean).forEach((n, k) => { if (k) c.append(', '); const a = document.createElement('a'); a.href = 'tel:+91' + n; a.textContent = n; c.appendChild(a); }); }
 if (!CONFIG.showRsvp) $('#s-rsvp').hidden = true;
 
 const pad = n => String(n).padStart(2, '0');
