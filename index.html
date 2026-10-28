@@ -175,6 +175,113 @@ button,a,input,select,textarea{font:inherit}
   .scr.flip-out,.scr.flip-in{animation:none}
 }
 
+/* ============ FRAMES (drawn) ============ */
+.frm{position:relative;width:min(84vw,380px)}
+.frm.arch{aspect-ratio:320/250}.frm.pearl{aspect-ratio:320/200}.frm.cusp{aspect-ratio:320/236}
+.frm>svg{position:absolute;inset:0;width:100%;height:100%;filter:drop-shadow(0 8px 16px rgba(70,50,10,.22))}
+.frm .in{position:absolute;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;text-align:center}
+.arch .in{left:12%;right:12%;top:33%;bottom:6%}
+.pearl .in{left:10%;right:10%;top:15%;bottom:15%}
+.cusp .in{left:10%;right:10%;top:34%;bottom:6%}
+.frm h2{margin:0;font-family:var(--f-round);font-weight:800;color:var(--green);font-size:clamp(28px,8vw,44px);line-height:1.06;text-wrap:balance}
+.frm h2 .ch{display:inline-block;will-change:transform}
+.frm .sub{margin:2px 0 0;font-family:var(--f-serif);font-style:italic;font-weight:600;font-size:clamp(14px,4vw,17px);line-height:1.25;color:var(--leaf)}
+.lotus-d{width:min(60vw,260px);margin:0 auto}
+.lotus-d svg,.crest-svg svg,.bk-orn svg{width:100%;height:auto;display:block}
+.crest-svg{width:66%;margin:2px auto 8px}
+.crest-svg.bot{margin:12px auto 0;transform:scaleY(-1)}
+.ico{width:1.1em;height:1.1em;vertical-align:-.18em;display:inline-block}
+.mono>span[data-art]{position:absolute;inset:0}
+.mono .mandala{position:absolute;inset:0;width:100%;height:100%;animation:spin 50s linear infinite}
+.mono b{grid-area:1/1}
+.mono b .ico{width:.5em;height:.5em;color:#f0d58c;vertical-align:.1em;margin:0 .06em}
+.bk-orn{width:min(64vw,330px)}
+.bk-orn.bot{transform:scaleY(-1)}
+.medal .ring svg{width:100%;height:100%}
+.face .d2{font-size:16cqw}
+
+/* ============ SCENE DECORATIONS ============ */
+.deco{position:absolute;inset:0;pointer-events:none;overflow:hidden}
+.deco.back{z-index:1}
+.deco.front{z-index:3}
+html.motion .scene .s-hero,.s-hero{z-index:2}
+.scene .s-text{z-index:4}
+.scene .s-extra{z-index:5}
+.d{position:absolute;will-change:transform}
+.d>svg,.d [data-art]>svg{width:100%;height:auto;display:block}
+.flipx>svg{transform:scaleX(-1)}
+.toran{top:0;left:0;right:0}
+.ground{position:absolute;left:-2%;right:-2%;bottom:0;height:5.5svh;background-repeat:repeat-x;background-size:auto 100%;background-position:bottom;z-index:2}
+.d.bl{left:-3vw;bottom:2.2svh;width:31vw}
+.d.br{right:-3vw;bottom:2.2svh;width:31vw}
+.d.ml{left:-15vw;bottom:3svh;width:40vw}
+.d.mr{right:-15vw;bottom:3svh;width:40vw}
+.d.bushl{left:-8vw;bottom:0;width:36vw}
+.d.bushr{right:-8vw;bottom:0;width:36vw}
+.d.kal{left:0;bottom:2.5svh;width:24vw}
+.d.elr{right:-7vw;bottom:2.5svh;width:50vw}
+.d.ell{left:-7vw;bottom:2.5svh;width:50vw}
+.d.diyas{left:0;right:0;bottom:1.2svh;display:flex;justify-content:center;gap:12vw}
+.d.diyas>div{width:11vw}
+.d.bells{top:0;left:0;right:0;height:40svh}
+.d.bells>div{position:absolute;top:0}
+.d.fw{width:26vw}
+.fw1{left:3vw;top:calc(env(safe-area-inset-top,0px) + 3svh)}
+.fw2{right:4vw;top:calc(env(safe-area-inset-top,0px) + 9svh);width:20vw!important}
+.fw3{left:60%;top:calc(env(safe-area-inset-top,0px) + 1svh);width:14vw!important}
+.cut-r{-webkit-mask-image:linear-gradient(to left,transparent 0,#000 11%);mask-image:linear-gradient(to left,transparent 0,#000 11%)}
+.cut-lr{-webkit-mask-image:linear-gradient(to right,transparent 0,#000 8%,#000 89%,transparent 100%);mask-image:linear-gradient(to right,transparent 0,#000 8%,#000 89%,transparent 100%)}
+.s-hero img{-webkit-mask-composite:source-in}
+
+/* artwork motion */
+.fig .bob{animation:aBob .9s ease-in-out infinite alternate}
+@keyframes aBob{to{transform:translateY(-3px)}}
+.fig .arm-r{transform-origin:100px 85px;animation:aStrike .42s ease-in-out infinite alternate}
+.fig .arm-l{transform-origin:50px 85px;animation:aStrike2 .42s ease-in-out infinite alternate}
+@keyframes aStrike{from{transform:rotate(-16deg)}to{transform:rotate(8deg)}}
+@keyframes aStrike2{from{transform:rotate(8deg)}to{transform:rotate(-6deg)}}
+.fig .sway{transform-origin:75px 232px;animation:aSway 1.6s ease-in-out infinite alternate}
+.fig .sway2{transform-origin:86px 300px;animation:aSway 3.2s ease-in-out infinite alternate}
+@keyframes aSway{from{transform:rotate(-3deg)}to{transform:rotate(3deg)}}
+.fig .trunk{transform-origin:214px 92px;animation:aSway 1.8s ease-in-out infinite alternate}
+.notes .n1{animation:aNote 2.2s ease-out infinite}.notes .n2{animation:aNote 2.2s ease-out 1.1s infinite}
+@keyframes aNote{0%{transform:translateY(6px);opacity:0}30%{opacity:1}100%{transform:translateY(-16px);opacity:0}}
+.bellsvg .swing{transform-origin:20px 0;animation:aSwing 2.4s ease-in-out infinite alternate}
+.toran .strand{transform-origin:0 0;animation:aSwing 2.8s ease-in-out infinite alternate}
+@keyframes aSwing{from{transform:rotate(-6deg)}to{transform:rotate(6deg)}}
+.diya .flame{transform-origin:30px 30px;animation:aFlick .16s ease-in-out infinite alternate}
+@keyframes aFlick{from{transform:scale(.92,.86)}to{transform:scale(1.04,1.08)}}
+.diya .glow{animation:aGlow 1.3s ease-in-out infinite alternate}
+@keyframes aGlow{from{opacity:.55}to{opacity:1}}
+.fw .burst{transform-origin:0 0;animation:aBurst 2.8s ease-out infinite}
+.fw2 .burst{animation-delay:.9s}.fw3 .burst{animation-delay:1.7s}
+@keyframes aBurst{0%{transform:scale(.1);opacity:0}12%{opacity:1}70%{transform:scale(1);opacity:.9}100%{transform:scale(1.12);opacity:0}}
+
+@media (min-width:900px) and (min-aspect-ratio:1/1){
+  .frm{width:min(100%,400px)}
+  .frm h2{font-size:clamp(32px,3vw,48px)}
+  .ground{height:6vh}
+  .d.bl{left:calc(50% - 41vh);width:21vh;bottom:3vh}
+  .d.br{right:calc(50% - 41vh);width:21vh;bottom:3vh}
+  .d.ml{left:-2vh;width:26vh;bottom:3vh}
+  .d.mr{right:-2vh;width:26vh;bottom:3vh}
+  .d.bushl{left:calc(50% - 62vh);width:30vh}
+  .d.bushr{right:calc(50% - 62vh);width:30vh}
+  .d.kal{left:calc(50% - 46vh);width:16vh;bottom:3vh}
+  .d.elr{right:calc(50% - 60vh);width:40vh;bottom:3vh}
+  .d.ell{left:calc(50% - 60vh);width:40vh;bottom:3vh}
+  .d.diyas{gap:7vh}.d.diyas>div{width:6vh}
+  .scene .s-extra,html.motion .scene .s-extra{position:relative;z-index:6}
+  .scene .s-text,html.motion .scene .s-text{position:relative;z-index:6}
+  .d.bells{height:44vh}.d.bells>div{width:3.2vh!important}
+  .d.fw{width:18vh}.fw1{left:28%;top:6vh}.fw2{right:26%;top:12vh;width:14vh!important}.fw3{left:50%;top:2vh;width:10vh!important}
+}
+@media (prefers-reduced-motion:reduce){
+  .fig *,.bellsvg *,.toran *,.diya *,.fw *,.mono .mandala{animation:none!important}
+}
+
+html.motion .scene .s-text{z-index:4}
+html.motion .scene .s-extra{z-index:5}
 /* ============ PALACE STAGE ============ */
 .stage{position:fixed;inset:0;z-index:0;overflow:hidden;background:var(--mint)}
 .stage img{width:100%;height:100%;object-fit:cover;object-position:center top;transform-origin:50% 30%}
@@ -355,13 +462,13 @@ footer{position:relative;z-index:2;text-align:center;padding:18px var(--gut-r) c
   <div class="bk">
     <div class="bk-face bk-front">
       <span class="pat" aria-hidden="true"></span>
-      <img class="crest" src="img/crest-top.webp" alt="">
+      <div class="bk-orn" data-art="lotus"></div>
       <p class="bk-eyebrow">Shubh Vivah</p>
-      <div class="mono"><img src="img/frame-ring.webp" alt=""><b><span data-k="gi"></span><i>♥</i><span data-k="bi"></span></b></div>
+      <div class="mono"><span data-art="mandala"></span><b><span data-k="gi"></span><span data-art="heart"></span><span data-k="bi"></span></b></div>
       <p class="bk-names"><span data-k="groom"></span> <small>weds</small> <span data-k="bride"></span></p>
       <p class="bk-date" data-k="dateDots"></p>
-      <img class="crest bot" src="img/crest-bot.webp" alt="">
-      <span class="bk-tap">Tap to open ✦</span>
+      <div class="bk-orn bot" data-art="lotus"></div>
+      <span class="bk-tap">Tap to open</span>
     </div>
     <div class="bk-face bk-back" aria-hidden="true"></div>
   </div>
@@ -423,8 +530,8 @@ footer{position:relative;z-index:2;text-align:center;padding:18px var(--gut-r) c
     <div class="gate-card">
       <img src="img/excited.webp" alt="Are you excited?">
       <p class="hint">for the big fat wedding?</p>
-      <button class="gbtn yes" id="yesBtn">YES! 🥳</button>
-      <button class="gbtn no" id="noBtn">NO 🙄</button>
+      <button class="gbtn yes" id="yesBtn">YES!</button>
+      <button class="gbtn no" id="noBtn">NO</button>
     </div>
   </div>
 
@@ -432,77 +539,102 @@ footer{position:relative;z-index:2;text-align:center;padding:18px var(--gut-r) c
     <div class="frame l">
       <picture><source media="(min-aspect-ratio: 1/1)" srcset="img/nope-l.webp"><img class="bg" src="img/nope-p.webp" alt=""></picture>
       <div class="t">
-        <h2>Are you kidding me, bro?! 😤</h2>
+        <h2>Are you kidding me, bro?!</h2>
         <p class="hand-sm">Wrong answer. Sirf ek hi option hai…</p>
         <div class="acts">
-          <button class="pill y" id="yesBtn2">Okay okay, YES! 🥳</button>
+          <button class="pill y" id="yesBtn2">Okay okay, YES!</button>
           <button class="pill n" id="stillNo">Still no</button>
         </div>
       </div>
     </div>
   </div>
-  <div class="yay" id="yay"><b>Yayyy! 🎉</b></div>
+  <div class="yay" id="yay"><b>Yayyy!</b></div>
 </div>
 
 <!-- ================= MAIN ================= -->
 <div class="stage" aria-hidden="true"><picture><source media="(min-width: 900px) and (min-aspect-ratio: 1/1)" srcset="img/palace-wide.webp"><img id="palace" src="img/palace.webp" alt=""></picture></div>
 <div class="petals" aria-hidden="true" id="petals"></div>
 
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs><radialGradient id="gGlow"><stop offset="0" stop-color="#ffd76a" stop-opacity=".85"/><stop offset="1" stop-color="#ffd76a" stop-opacity="0"/></radialGradient><linearGradient id="gFlame" x1="0" y1="1" x2="0" y2="0"><stop offset="0" stop-color="#ff7a00"/><stop offset=".6" stop-color="#ffc93c"/><stop offset="1" stop-color="#fff3b0"/></linearGradient></defs></svg>
 <main id="main">
   <section class="scene" id="s-wait">
+    <div class="deco back">
+      <div class="d ml" data-from="l" data-art="banana"></div>
+      <div class="d mr" data-from="r" data-art="banana:flip"></div>
+    </div>
     <div class="s-text">
-      <div class="plaque">
-        <img class="crest top" src="img/crest-top.webp" alt="">
-        <div class="mid"><h2 class="js-chars">Wait is Over</h2><p class="sub"><span data-k="groom"></span> &amp; <span data-k="bride"></span> are getting married!</p></div>
-        <img class="crest bot" src="img/crest-bot.webp" alt="">
-      </div>
+      <div class="frm arch" data-frame="arch"><div class="in"><h2 class="js-chars">Wait is Over</h2><p class="sub"><span data-k="groom"></span> &amp; <span data-k="bride"></span> are getting married!</p></div></div>
     </div>
     <div class="s-extra m-hide">
       <p class="names-xl"><span data-k="groom"></span><span class="amp">&amp;</span><span data-k="bride"></span></p>
       <p class="hash" data-k="dateDots"></p>
     </div>
     <div class="s-hero"><img src="img/c-maroon.webp" alt="Sparsh and Komal making a heart"></div>
+    <div class="deco front">
+      <div class="d toran" data-from="t"></div>
+      <div class="d bushl" data-from="l" data-art="bush"></div>
+      <div class="d bushr" data-from="r" data-art="bush"></div>
+      <div class="d bl" data-from="l" data-art="dhol"></div>
+      <div class="d br" data-from="r" data-art="shehnai"></div>
+      <div class="ground"></div>
+    </div>
     <span class="cue" id="cue">Scroll <span>↓</span></span>
   </section>
 
   <section class="scene" id="s-save">
-    <div class="s-text">
-      <div class="plaque">
-        <img class="crest top" src="img/crest-top.webp" alt="">
-        <div class="mid"><h2 class="js-chars">Save the Date</h2><p class="sub">Shaadi ka card nahi, dil ka invitation hai</p></div>
-        <img class="crest bot" src="img/crest-bot.webp" alt="">
+    <div class="deco back">
+      <div class="d ml" data-from="l" data-art="banana"></div>
+      <div class="d bells" data-from="t">
+        <div data-art="bell:40" style="left:4%;width:7%"></div><div data-art="bell:90" style="left:13%;width:6%"></div>
+        <div data-art="bell:60" style="right:13%;width:6%"></div><div data-art="bell:110" style="right:4%;width:7%"></div>
       </div>
     </div>
+    <div class="s-text">
+      <div class="frm pearl" data-frame="pearl"><div class="in"><h2 class="js-chars">Save the Date</h2><p class="sub">Shaadi ka card nahi, dil ka invitation hai</p></div></div>
+    </div>
     <div class="s-extra"><div class="xwrap">
-      <div class="calcard"><img src="img/calendar.webp" alt="November 2026 calendar with the 20th circled in a heart — save the date 20.11.2026"><span class="beat" aria-hidden="true"></span></div>
+      <div class="calcard"><img src="img/calendar.webp" alt="November 2026 calendar with the 20th circled in a heart, save the date 20.11.2026"><span class="beat" aria-hidden="true"></span></div>
     </div></div>
-    <div class="s-hero"><img src="img/c-dance.webp" alt="The couple dancing"></div>
+    <div class="s-hero"><img class="cut-r" src="img/c-dance.webp" alt="The couple dancing"></div>
+    <div class="deco front">
+      <div class="d kal" data-from="l" data-art="kalash"></div>
+      <div class="d elr flipx" data-from="r" data-art="elephant"></div>
+      <div class="d diyas" data-from="b"><div data-art="diya"></div><div data-art="diya"></div><div data-art="diya"></div></div>
+      <div class="ground"></div>
+    </div>
   </section>
 
   <section class="scene" id="s-date">
+    <div class="deco back">
+      <div class="d fw fw1" data-from="t" data-art="burst"></div>
+      <div class="d fw fw2" data-from="t" data-art="burst:#ff8a00:#ffd447"></div>
+      <div class="d fw fw3" data-from="t" data-art="burst:#e75480:#fff3d6"></div>
+    </div>
     <div class="s-text">
-      <div class="plaque">
-        <img class="crest top" src="img/crest-top.webp" alt="">
-        <div class="mid"><h2 class="js-chars">Date Has Been Fixed</h2></div>
-        <img class="crest bot" src="img/crest-bot.webp" alt="">
-      </div>
+      <div class="frm cusp" data-frame="cusp"><div class="in"><h2 class="js-chars">Date Has Been Fixed</h2></div></div>
     </div>
     <div class="s-extra"><div class="xwrap">
       <div class="medal">
-        <img class="ring" src="img/frame-ring.webp" alt="">
-        <div class="face" aria-live="polite"><span class="d" data-k="dDay"></span><span class="m" data-k="dMonth"></span><span class="y" data-k="dYear"></span><span class="w" data-k="dWeek"></span></div>
+        <div class="ring" data-art="mandala"></div>
+        <div class="face" aria-live="polite"><span class="d2" data-k="dDay"></span><span class="m" data-k="dMonth"></span><span class="y" data-k="dYear"></span><span class="w" data-k="dWeek"></span></div>
         <canvas id="scratch" aria-label="Scratch to reveal the wedding date"></canvas>
       </div>
-      <p class="scratch-hint" id="scratchHint">Scratch the gold to reveal ✨</p>
+      <p class="scratch-hint" id="scratchHint">Scratch the gold to reveal the date</p>
     </div></div>
-    <div class="s-hero"><img src="img/c-varmala.webp" alt="Varmala moment"></div>
+    <div class="s-hero"><img class="cut-lr" src="img/c-varmala.webp" alt="Varmala moment"></div>
+    <div class="deco front">
+      <div class="d mr" data-from="r" data-art="banana:flip"></div>
+      <div class="d bl" data-from="l" data-art="shehnai:#7c1d33:#ff8a00:#ffd447"></div>
+      <div class="d br" data-from="r" data-art="dhol:#2f7d4f:#e75480:#ffd447"></div>
+      <div class="ground"></div>
+    </div>
   </section>
 
   <section class="flow" id="s-invite">
-    <img class="divider js-rise" src="img/crest-top.webp" alt="" style="aspect-ratio:520/183">
+    <div class="lotus-d js-rise" data-art="lotus"></div>
     <div class="duo">
       <div class="card invite js-rise">
-        <img class="crest" src="img/crest-top.webp" alt="">
+        <div class="crest-svg" data-art="lotus"></div>
         <p class="mantra">॥ श्री गणेशाय नमः ॥</p>
         <p class="small">With the blessings of our elders, we joyfully invite you and your family to the wedding celebrations of</p>
         <p class="nm" data-k="groomFull"></p>
@@ -511,7 +643,7 @@ footer{position:relative;z-index:2;text-align:center;padding:18px var(--gut-r) c
         <p class="nm" data-k="bride"></p>
         <p class="of" data-k="brideOf"></p>
         <p class="on" data-k="dateLong"></p>
-        <img class="crest bot" src="img/crest-bot.webp" alt="">
+        <div class="crest-svg bot" data-art="lotus"></div>
       </div>
       <div class="countbox">
         <h2 class="sec-title js-rise">The Celebration Begins In</h2>
@@ -521,20 +653,20 @@ footer{position:relative;z-index:2;text-align:center;padding:18px var(--gut-r) c
           <div><b id="cM">00</b><span>Mins</span></div>
           <div><b id="cS">00</b><span>Secs</span></div>
         </div>
-        <a class="cal js-rise" id="calLink" target="_blank" rel="noopener">📅 Add to Google Calendar</a>
+        <a class="cal js-rise" id="calLink" target="_blank" rel="noopener"><span data-art="cal"></span> Add to Google Calendar</a>
       </div>
     </div>
   </section>
 
   <section class="flow" id="s-events">
-    <img class="divider js-rise" src="img/crest-bot.webp" alt="">
+    <div class="lotus-d js-rise" data-art="lotus"></div>
     <h2 class="sec-title js-rise">Wedding Festivities</h2>
     <p class="sec-sub js-rise">Three ceremonies, one forever</p>
     <div class="events" id="events"></div>
   </section>
 
   <section class="flow" id="s-venue">
-    <img class="divider js-rise" src="img/crest-bot.webp" alt="">
+    <div class="lotus-d js-rise" data-art="lotus"></div>
     <h2 class="sec-title js-rise">Where It All Happens</h2>
     <div class="venue-wrap">
       <div class="venue js-venue"><img src="img/venue.webp" alt="Wedding venue decorated with marigolds"></div>
@@ -542,13 +674,13 @@ footer{position:relative;z-index:2;text-align:center;padding:18px var(--gut-r) c
         <h3 data-k="venueName"></h3>
         <p data-k="venueAddr"></p>
         <p class="contact" id="contactLine"></p>
-        <a class="btn-gold" id="mapLink" target="_blank" rel="noopener">📍 Get Directions</a>
+        <a class="btn-gold" id="mapLink" target="_blank" rel="noopener"><span data-art="pin"></span> Get Directions</a>
       </div>
     </div>
   </section>
 
   <section class="flow" id="s-moments">
-    <img class="divider js-rise" src="img/crest-bot.webp" alt="">
+    <div class="lotus-d js-rise" data-art="lotus"></div>
     <h2 class="sec-title js-rise">Our Moments</h2>
     <div class="pols">
       <figure class="pol js-pol"><img src="img/p1.webp" alt="Sparsh and Komal selfie"><figcaption>us ♡</figcaption></figure>
@@ -575,6 +707,10 @@ footer{position:relative;z-index:2;text-align:center;padding:18px var(--gut-r) c
   </section>
 
   <section class="scene" id="s-bye">
+    <div class="deco back">
+      <div class="d ml" data-from="l" data-art="banana"></div>
+      <div class="d mr" data-from="r" data-art="banana:flip"></div>
+    </div>
     <div class="s-text">
       <p class="lead d-hide">Your presence is the best gift. We can't wait to celebrate with you!</p>
       <p class="names-xl"><span data-k="groom"></span><span class="amp">&amp;</span><span data-k="bride"></span></p>
@@ -588,6 +724,12 @@ footer{position:relative;z-index:2;text-align:center;padding:18px var(--gut-r) c
       </div>
     </div>
     <div class="s-hero"><img src="img/c-bye.webp" alt="The couple waving goodbye"></div>
+    <div class="deco front">
+      <div class="d toran" data-from="t"></div>
+      <div class="d ell" data-from="l" data-art="elephant"></div>
+      <div class="d elr flipx" data-from="r" data-art="elephant"></div>
+      <div class="ground"></div>
+    </div>
   </section>
 </main>
 <footer>Made with love by the family ♡</footer>
@@ -606,13 +748,13 @@ const CONFIG = {
   groom: "Sparsh",                 // short name used in the intro & headings
   bride: "Komal",
   groomFull: "Kumar Sparsh",       // full name on the invitation card
-  groomLine1: "Ghar ka ladla",
+  groomLine1: "Ghar ka eklauta beta",
   groomLine2: "Hard to satisfy",
-  brideLine1: "Ghar ki pari",
+  brideLine1: "Ghar ki choti beti",
   brideLine2: "Social butterfly",
-  brideTags: ["Social butterfly", "Pampered", "Curious mind", "Unapologetically herself"],  // cycle under "Ghar ki pari"
-  groomTags: ["Hard to satisfy", "Temperamental", "Thoughtful", "Practical"],              // cycle under "Ghar ka ladla"
-  story: "After thoughtful conversations, family blessings and a little bit of destiny… we said YES to forever ❤️",
+  brideTags: ["Social butterfly", "Pampered", "Curious mind", "Unapologetically herself"],  // cycle under "Ghar ki choti beti"
+  groomTags: ["Hard to satisfy", "Temperamental", "Thoughtful", "Practical"],              // cycle under "Ghar ka eklauta beta"
+  story: "After thoughtful conversations, family blessings and a little bit of destiny… we said YES to forever.",
   groomOf: "S/o Manoj Kumar Upadhyay & Sunila Upadhyay",
   brideOf: "D/o Vishwanath Sharma & Manju Devi",
   weddingDate: "2026-11-20T00:00:00+05:30",   // wedding day (India time); add the muhurat time when known
@@ -650,6 +792,213 @@ const data = {
   dateDots: fmt({day:'2-digit'}) + ' · ' + fmt({month:'2-digit'}) + ' · ' + fmt({year:'numeric'})
 };
 $$('[data-k]').forEach(el => { const v = data[el.dataset.k]; if (v) el.textContent = v; else if (v === '') el.hidden = true; });
+
+/* ---------- hand-drawn wedding artwork (SVG, no images) ---------- */
+const GOLD = '#d9a83c', GOLD_D = '#a87a22', SKIN = '#c68a5a', SKIN_D = '#a8704a', MAROON = '#7c1d33';
+const svg = (vb, body, cls = '') => `<svg viewBox="${vb}" class="${cls}" aria-hidden="true" focusable="false">${body}</svg>`;
+const rnd = (a, b) => a + Math.random() * (b - a);
+
+function head(turban, plume = '#fff'){
+  return `
+  <rect x="68" y="62" width="14" height="14" rx="4" fill="${SKIN_D}"/>
+  <circle cx="75" cy="50" r="17" fill="${SKIN}"/>
+  <circle cx="58.5" cy="52" r="3.6" fill="${SKIN_D}"/>
+  <circle cx="69" cy="50" r="1.9" fill="#2b1a12"/><circle cx="81.5" cy="50" r="1.9" fill="#2b1a12"/>
+  <path d="M65 58 Q75 64.5 85 58 Q80 61.5 75 60.5 Q70 61.5 65 58Z" fill="#2b1a12"/>
+  <path d="M56 46 Q54 23 75 21 Q97 22 95 46 Q86 37.5 75 38.5 Q64 37.5 56 46Z" fill="${turban}"/>
+  <path d="M58 37 Q75 27 93 37 M57 42.5 Q75 32 94 42.5" stroke="rgba(255,255,255,.35)" stroke-width="2" fill="none"/>
+  <circle cx="84" cy="27" r="3.2" fill="${GOLD}"/>
+  <path d="M84 26 Q89 10 97 4 Q93 15 86.5 26Z" fill="${plume}"/>`;
+}
+function body(kurta, sash){
+  return `
+  <path d="M50 150 L44 227 L66 227 L75 168 L84 227 L106 227 L100 150Z" fill="#fff6e6" stroke="#e5d6bb" stroke-width="1.5"/>
+  <ellipse cx="55" cy="230" rx="13" ry="5.5" fill="#6b3a1f"/><ellipse cx="95" cy="230" rx="13" ry="5.5" fill="#6b3a1f"/>
+  <path d="M46 80 Q75 67 104 80 L112 157 Q75 167 38 157Z" fill="${kurta}"/>
+  <path d="M75 77 L75 152" stroke="rgba(0,0,0,.14)" stroke-width="1.5"/>
+  <circle cx="75" cy="92" r="1.8" fill="${GOLD}"/><circle cx="75" cy="102" r="1.8" fill="${GOLD}"/><circle cx="75" cy="112" r="1.8" fill="${GOLD}"/>
+  <path d="M40 148 Q75 158 110 148" stroke="${GOLD}" stroke-width="3" fill="none"/>
+  <path d="M48 82 L106 150" stroke="${sash}" stroke-width="7" opacity=".9"/>`;
+}
+const ART = {
+  dhol: (kurta = '#ee8a1f', turban = '#d6264f', sash = '#ffd447') => svg('0 0 150 250', `
+    <g class="bob">
+      <path d="M93 42 Q114 70 105 120 Q99 92 86 58Z" fill="${turban}" opacity=".85"/>
+      ${body(kurta, sash)}${head(turban)}
+      <g>
+        <path d="M30 112 Q75 103 120 112 L120 142 Q75 151 30 142Z" fill="#a3203a"/>
+        <path d="M30 112 Q75 103 120 112 M30 142 Q75 151 120 142" stroke="${GOLD}" stroke-width="3" fill="none"/>
+        <polyline points="35,114 43,140 51,113 59,141 67,112 75,142 83,112 91,141 99,113 107,140 115,114" stroke="#f3d48a" stroke-width="1.6" fill="none"/>
+        <ellipse cx="30" cy="127" rx="7.5" ry="16" fill="#f5e7c9" stroke="#8a5a2b" stroke-width="2"/>
+        <ellipse cx="120" cy="127" rx="7.5" ry="16" fill="#f5e7c9" stroke="#8a5a2b" stroke-width="2"/>
+      </g>
+      <g class="arm-l"><path d="M50 85 Q35 100 28 117" stroke="${kurta}" stroke-width="11" stroke-linecap="round" fill="none"/>
+        <circle cx="27" cy="119" r="5.5" fill="${SKIN}"/><path d="M27 119 L11 101" stroke="#6b3a1f" stroke-width="3" stroke-linecap="round"/></g>
+      <g class="arm-r"><path d="M100 85 Q119 75 126 57" stroke="${kurta}" stroke-width="11" stroke-linecap="round" fill="none"/>
+        <circle cx="127" cy="54" r="5.5" fill="${SKIN}"/><path d="M127 54 Q123 82 119 112" stroke="#6b3a1f" stroke-width="3.5" fill="none" stroke-linecap="round"/></g>
+    </g>`, 'fig'),
+
+  shehnai: (kurta = '#2f7d4f', turban = '#f2b705', sash = '#e75480') => svg('0 0 150 250', `
+    <g class="sway">
+      <path d="M93 42 Q112 66 104 112 Q98 88 86 58Z" fill="${turban}" opacity=".85"/>
+      ${body(kurta, sash)}${head(turban, '#e75480')}
+      <circle cx="66" cy="56" r="4.5" fill="#e98a8a" opacity=".55"/><circle cx="84" cy="56" r="4.5" fill="#e98a8a" opacity=".55"/>
+      <path d="M50 85 Q60 106 92 82" stroke="${kurta}" stroke-width="11" stroke-linecap="round" fill="none"/>
+      <path d="M100 85 Q114 96 104 96" stroke="${kurta}" stroke-width="11" stroke-linecap="round" fill="none"/>
+      <path d="M83 61 L88 58 L117 104 L113 107Z" fill="#8a4f22"/>
+      <path d="M112 102 L132 122 Q124 132 108 124 L114 106Z" fill="${GOLD}" stroke="${GOLD_D}" stroke-width="1.5"/>
+      <circle cx="94" cy="80" r="5.5" fill="${SKIN}"/><circle cx="104" cy="94" r="5.5" fill="${SKIN}"/>
+      <g class="notes" fill="${MAROON}">
+        <path class="n1" d="M128 70 v-16 l8 -3 v14" stroke="${MAROON}" stroke-width="2" fill="none"/><circle class="n1" cx="125.5" cy="70" r="3"/>
+        <path class="n2" d="M138 92 v-14" stroke="${MAROON}" stroke-width="2"/><circle class="n2" cx="135.5" cy="92" r="3"/>
+      </g>
+    </g>`, 'fig'),
+
+  elephant: () => svg('0 0 250 190', `
+    <g class="bob">
+      <path d="M30 96 Q14 108 18 130" stroke="#7d8192" stroke-width="4" fill="none" stroke-linecap="round"/>
+      <rect x="42" y="112" width="22" height="58" rx="8" fill="#7d8192"/><rect x="70" y="112" width="22" height="58" rx="8" fill="#868a9b"/>
+      <rect x="144" y="112" width="22" height="58" rx="8" fill="#7d8192"/><rect x="170" y="112" width="22" height="58" rx="8" fill="#868a9b"/>
+      <path d="M42 156 h50 M144 156 h48" stroke="${GOLD}" stroke-width="4"/>
+      <path d="M28 100 Q24 56 76 44 Q126 33 170 52 Q194 62 194 96 Q192 126 160 130 L60 130 Q30 128 28 100Z" fill="#8f93a3"/>
+      <path d="M64 46 Q116 28 162 50 L156 118 Q112 128 70 118Z" fill="${MAROON}" stroke="${GOLD}" stroke-width="4"/>
+      <path d="M74 56 Q116 42 152 58 L148 108 Q112 117 78 110Z" fill="none" stroke="${GOLD}" stroke-width="1.5" stroke-dasharray="4 4"/>
+      <g fill="${GOLD}"><circle cx="96" cy="72" r="3"/><circle cx="116" cy="66" r="3"/><circle cx="136" cy="72" r="3"/><circle cx="106" cy="90" r="3"/><circle cx="126" cy="90" r="3"/><circle cx="116" cy="106" r="3"/></g>
+      <g fill="#ffd447">${Array.from({length:9}, (_, i) => `<circle cx="${74 + i * 10}" cy="${120 - Math.sin(i / 8 * Math.PI) * 4}" r="3.2"/>`).join('')}</g>
+      <circle cx="200" cy="80" r="31" fill="#8f93a3"/>
+      <path d="M180 58 Q156 72 166 108 Q186 116 194 94 Q196 70 180 58Z" fill="#c899ad" stroke="#a7768c" stroke-width="2"/>
+      <g class="trunk"><path d="M222 86 Q238 116 226 144 Q220 158 207 153 Q200 148 207 142 Q217 122 206 102Z" fill="#8f93a3"/></g>
+      <path d="M213 100 Q226 110 236 104 Q226 115 210 108Z" fill="#fff8ec"/>
+      <circle cx="210" cy="72" r="2.8" fill="#2b1a12"/>
+      <path d="M200 44 L218 60 L207 92 L190 63Z" fill="${MAROON}" stroke="${GOLD}" stroke-width="2.5"/>
+      <circle cx="205" cy="64" r="3.5" fill="#ffd447"/>
+    </g>`, 'fig'),
+
+  banana: (flip = false) => svg('0 0 170 300', `
+    <g ${flip ? 'transform="translate(170 0) scale(-1 1)"' : ''}><g class="sway2">
+      <path d="M76 300 Q70 210 79 130 L92 130 Q98 210 94 300Z" fill="#6f8f3a"/>
+      <path d="M84 135 Q30 100 4 22 Q62 52 90 126Z" fill="#3d7f3e"/><path d="M84 132 Q46 80 20 40" stroke="#8cc26a" stroke-width="2" fill="none"/>
+      <path d="M86 132 Q140 96 166 30 Q112 52 82 124Z" fill="#4f9a4c"/><path d="M86 130 Q128 86 150 50" stroke="#a6d47f" stroke-width="2" fill="none"/>
+      <path d="M85 128 Q70 60 88 0 Q112 58 90 128Z" fill="#5aa951"/><path d="M87 126 Q84 60 89 10" stroke="#b5df8e" stroke-width="2" fill="none"/>
+      <path d="M84 150 Q38 150 0 120 Q46 118 86 142Z" fill="#2f6b34"/>
+      <path d="M88 150 Q132 156 168 132 Q124 124 86 142Z" fill="#37763a"/>
+    </g></g>`, 'fig'),
+
+  kalash: () => svg('0 0 120 160', `
+    <g class="leaves">
+      ${[-58, -30, 0, 30, 58].map(a => `<path transform="rotate(${a} 60 74)" d="M60 74 Q46 44 60 6 Q74 44 60 74Z" fill="${a % 60 ? '#3f8a43' : '#2f6b34'}"/>`).join('')}
+    </g>
+    <ellipse cx="60" cy="62" rx="19" ry="21" fill="#8b5a2b"/><path d="M48 50 Q60 40 72 50" stroke="#c4955e" stroke-width="3" fill="none"/>
+    <path d="M24 98 Q16 148 60 154 Q104 148 96 98 Q94 82 76 76 L44 76 Q26 82 24 98Z" fill="#c7782f"/>
+    <path d="M36 92 Q30 128 48 146" stroke="#e8a35a" stroke-width="5" fill="none" opacity=".7"/>
+    <rect x="40" y="72" width="40" height="10" rx="3" fill="${GOLD}"/>
+    <path d="M28 104 Q60 114 92 104" stroke="#d6264f" stroke-width="4" fill="none"/><path d="M27 111 Q60 121 93 111" stroke="#ffd447" stroke-width="3" fill="none"/>
+    <g fill="#fff3d6">${[[46,128],[60,132],[74,128],[53,140],[67,140]].map(([x,y]) => `<circle cx="${x}" cy="${y}" r="2.4"/>`).join('')}</g>`, 'fig'),
+
+  diya: () => svg('0 0 60 60', `
+    <ellipse class="glow" cx="30" cy="22" rx="16" ry="18" fill="url(#gGlow)"/>
+    <path class="flame" d="M30 6 Q38 18 34 28 Q30 33 26 28 Q22 18 30 6Z" fill="url(#gFlame)"/>
+    <path d="M4 34 Q30 62 56 34 Q44 40 30 40 Q16 40 4 34Z" fill="#c8642b"/>
+    <path d="M4 34 Q30 42 56 34" stroke="${GOLD}" stroke-width="2.5" fill="none"/>
+    <g fill="#ffd447"><circle cx="18" cy="45" r="1.8"/><circle cx="30" cy="48" r="1.8"/><circle cx="42" cy="45" r="1.8"/></g>`, 'diya'),
+
+  bell: (len = 70) => (len = +len, svg(`0 0 40 ${len + 50}`, `
+    <g class="swing">
+      <line x1="20" y1="0" x2="20" y2="${len}" stroke="#c9a04a" stroke-width="2"/>
+      ${Array.from({length: Math.floor(len / 14)}, (_, i) => `<circle cx="20" cy="${8 + i * 14}" r="3.6" fill="${i % 2 ? '#ffc93c' : '#ff8a00'}"/>`).join('')}
+      <path d="M20 ${len} q-4 4 0 8 q4 -4 0 -8z" fill="#d6264f"/>
+      <path d="M8 ${len + 36} Q8 ${len + 10} 20 ${len + 8} Q32 ${len + 10} 32 ${len + 36} L36 ${len + 42} L4 ${len + 42}Z" fill="${GOLD}" stroke="${GOLD_D}" stroke-width="1.5"/>
+      <circle cx="20" cy="${len + 45}" r="3.4" fill="${GOLD_D}"/>
+    </g>`, 'bellsvg')),
+
+  burst: (c1 = '#ffd447', c2 = '#e75480') => svg('-60 -60 120 120', `
+    <g class="burst">${Array.from({length:16}, (_, i) => { const a = i / 16 * Math.PI * 2, r1 = 14, r2 = i % 2 ? 44 : 54;
+      return `<line x1="${Math.cos(a) * r1}" y1="${Math.sin(a) * r1}" x2="${Math.cos(a) * r2}" y2="${Math.sin(a) * r2}" stroke="${i % 2 ? c2 : c1}" stroke-width="2.4" stroke-linecap="round"/><circle cx="${Math.cos(a) * (r2 + 4)}" cy="${Math.sin(a) * (r2 + 4)}" r="2.4" fill="${i % 2 ? c2 : c1}"/>`; }).join('')}
+      <circle r="5" fill="#fff6d0"/></g>`, 'fw'),
+
+  bush: () => { const cs = [], flowers = [];
+    for (let i = 0; i < 9; i++) cs.push(`<circle cx="${rnd(36, 124)}" cy="${rnd(48, 72)}" r="${rnd(18, 30)}" fill="${['#2f6b34','#3d7f3e','#4f9a4c','#5aa951'][i % 4]}"/>`);
+    for (let i = 0; i < 7; i++) flowers.push(`<circle cx="${rnd(26, 134)}" cy="${rnd(40, 80)}" r="${rnd(3, 4.6)}" fill="${['#e75480','#fff3d6','#ff8a00','#f7a3c0'][i % 4]}"/>`);
+    return svg('0 0 160 90', cs.join('') + flowers.join(''), 'bush'); },
+
+  mandala: () => { let s = '';
+    const ring = (n, r, len, w, fill, off = 0) => { for (let i = 0; i < n; i++) { const a = (i / n) * 360 + off;
+      s += `<path transform="rotate(${a})" d="M0 ${-r} Q${w} ${-r - len * .45} 0 ${-r - len} Q${-w} ${-r - len * .45} 0 ${-r}Z" fill="${fill}"/>`; } };
+    ring(24, 86, 26, 8, '#c9962f', 7.5); ring(24, 80, 16, 6, '#efc96a');
+    for (let i = 0; i < 48; i++) { const a = i / 48 * Math.PI * 2; s += `<circle cx="${Math.cos(a) * 76}" cy="${Math.sin(a) * 76}" r="${i % 2 ? 1.6 : 2.6}" fill="#b88a2e"/>`; }
+    for (let i = 0; i < 24; i++) { const a = i / 24 * Math.PI * 2; s += `<circle cx="${Math.cos(a) * 116}" cy="${Math.sin(a) * 116}" r="2.6" fill="#e2bf6c"/>`; }
+    return svg('-122 -122 244 244', `<circle r="72" fill="none" stroke="#b88a2e" stroke-width="3"/><circle r="66" fill="none" stroke="#e2bf6c" stroke-width="1.5"/>${s}`, 'mandala'); },
+
+  lotus: (w = 240) => svg('0 0 240 46', `
+    <path d="M10 26 H84 M156 26 H230" stroke="${GOLD}" stroke-width="1.6"/>
+    <path d="M84 26 q-10 -14 -22 -6 q10 2 6 10" stroke="${GOLD}" stroke-width="1.6" fill="none"/>
+    <path d="M156 26 q10 -14 22 -6 q-10 2 -6 10" stroke="${GOLD}" stroke-width="1.6" fill="none"/>
+    <circle cx="6" cy="26" r="3" fill="${GOLD}"/><circle cx="234" cy="26" r="3" fill="${GOLD}"/>
+    <path d="M120 4 Q132 18 120 36 Q108 18 120 4Z" fill="${GOLD}"/>
+    <path d="M120 36 Q100 30 96 14 Q112 18 120 36Z" fill="#e2bf6c"/><path d="M120 36 Q140 30 144 14 Q128 18 120 36Z" fill="#e2bf6c"/>
+    <path d="M120 36 Q96 40 86 28 Q106 26 120 36Z" fill="${GOLD_D}"/><path d="M120 36 Q144 40 154 28 Q134 26 120 36Z" fill="${GOLD_D}"/>
+    <circle cx="120" cy="40" r="2.6" fill="${MAROON}"/>`, 'lotus'),
+
+  pin: () => svg('0 0 24 24', '<path d="M12 2a7 7 0 0 0-7 7c0 5 7 13 7 13s7-8 7-13a7 7 0 0 0-7-7Zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5Z" fill="currentColor"/>', 'ico'),
+  cal: () => svg('0 0 24 24', '<path d="M7 2v2H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2h-2V2h-2v2H9V2H7Zm12 8v10H5V10h14Z" fill="currentColor"/>', 'ico'),
+  heart: () => svg('0 0 24 24', '<path d="M12 21s-7.5-4.6-9.6-9.2C.9 8.4 3 4.5 6.7 4.5c2.2 0 3.6 1.3 5.3 3.2 1.7-1.9 3.1-3.2 5.3-3.2 3.7 0 5.8 3.9 4.3 7.3C19.5 16.4 12 21 12 21z" fill="currentColor"/>', 'ico')
+};
+
+/* frames: a different one for every scene */
+const FRAMES = {
+  arch: () => svg('0 0 320 250', `
+    <path d="M14 248 L14 120 C14 80 52 64 96 58 C130 53 148 38 160 14 C172 38 190 53 224 58 C268 64 306 80 306 120 L306 248Z" fill="rgba(255,250,240,.9)" stroke="${GOLD_D}" stroke-width="3"/>
+    <path d="M26 240 L26 124 C26 90 60 76 100 70 C132 65 150 52 160 32 C170 52 188 65 220 70 C260 76 294 90 294 124 L294 240Z" fill="none" stroke="${GOLD}" stroke-width="1.5"/>
+    <path d="M160 14 L160 2" stroke="${GOLD_D}" stroke-width="2.5"/><circle cx="160" cy="6" r="4.5" fill="${GOLD}"/>
+    <path d="M150 14 Q160 4 170 14Z" fill="${GOLD}"/>
+    ${[[60,74],[260,74],[22,148],[298,148]].map(([x,y]) => `<g transform="translate(${x} ${y})"><circle r="5" fill="#e75480"/><circle r="2" fill="#ffd447"/></g>`).join('')}
+    <path d="M14 248 H306" stroke="${GOLD_D}" stroke-width="3"/>`, 'frm-svg'),
+  pearl: () => { let sc = '', pe = '';
+    for (let x = 20; x < 300; x += 20) { sc += `<path d="M${x} 12 a10 10 0 0 1 20 0" stroke="${GOLD}" stroke-width="2" fill="none"/><path d="M${x} 188 a10 10 0 0 0 20 0" stroke="${GOLD}" stroke-width="2" fill="none"/>`; }
+    for (let x = 30; x <= 290; x += 13) { pe += `<circle cx="${x}" cy="26" r="2" fill="${GOLD_D}"/><circle cx="${x}" cy="174" r="2" fill="${GOLD_D}"/>`; }
+    for (let y = 40; y <= 160; y += 13) { pe += `<circle cx="22" cy="${y}" r="2" fill="${GOLD_D}"/><circle cx="298" cy="${y}" r="2" fill="${GOLD_D}"/>`; }
+    const corner = (x, y, r) => `<g transform="translate(${x} ${y}) rotate(${r})"><path d="M0 0 Q14 -2 18 -14 Q4 -10 0 0Z M0 0 Q2 14 14 18 Q10 4 0 0Z" fill="${GOLD}"/><circle r="4" fill="#e75480"/></g>`;
+    return svg('0 0 320 200', `<rect x="10" y="12" width="300" height="176" rx="6" fill="rgba(255,250,240,.9)" stroke="${GOLD_D}" stroke-width="3"/>${sc}${pe}
+      ${corner(14,16,0)}${corner(306,16,90)}${corner(306,184,180)}${corner(14,184,270)}`, 'frm-svg'); },
+  cusp: () => { let strands = '';
+    [60, 100, 140, 180, 220, 260].forEach((x, i) => { const n = 3 + (i % 3 === 1 ? 1 : 0) + (i === 2 || i === 3 ? 1 : 0);
+      for (let k = 0; k < n; k++) strands += `<circle cx="${x}" cy="${44 + k * 9}" r="4" fill="${k % 2 ? '#ffc93c' : '#ff8a00'}"/>`; });
+    return svg('0 0 320 236', `
+      <path d="M14 234 L14 98 Q14 82 30 80 Q34 58 56 56 Q64 32 92 34 Q110 12 160 10 Q210 12 228 34 Q256 32 264 56 Q286 58 290 80 Q306 82 306 98 L306 234Z" fill="rgba(255,250,240,.9)" stroke="${GOLD_D}" stroke-width="3"/>
+      <path d="M24 226 L24 104 Q24 92 38 90 Q42 70 62 68 Q70 46 96 47 Q114 26 160 24 Q206 26 224 47 Q250 46 258 68 Q278 70 282 90 Q296 92 296 104 L296 226Z" fill="none" stroke="${GOLD}" stroke-width="1.5"/>
+      <path d="M40 40 Q160 60 280 40" stroke="#3f8a43" stroke-width="3" fill="none"/>${strands}
+      <path d="M14 234 H306" stroke="${GOLD_D}" stroke-width="3"/>`, 'frm-svg'); }
+};
+
+function toran(el){
+  const W = Math.max(320, Math.round(el.clientWidth || innerWidth)), H = 96; let s = '';
+  s += `<path d="M0 10 Q${W / 2} 22 ${W} 10" stroke="#8a5a2b" stroke-width="2.5" fill="none"/>`;
+  const sag = x => 10 + 12 * (1 - Math.pow((x - W / 2) / (W / 2), 2));
+  for (let x = 6; x < W; x += 13) s += `<path transform="translate(${x} ${sag(x) + 1}) rotate(${(x / 13) % 2 ? 22 : -22})" d="M0 0 Q6 9 0 20 Q-6 9 0 0Z" fill="${(x / 13) % 3 < 1 ? '#2f6b34' : '#4f9a4c'}"/>`;
+  let i = 0;
+  for (let x = 13; x < W - 6; x += 26, i++) {
+    const len = 4 + Math.round(3 * Math.abs(Math.sin(i * .55))), y0 = sag(x) + 6;
+    let g = '';
+    for (let k = 0; k < len; k++) g += `<circle cx="0" cy="${k * 9.2}" r="4.8" fill="${k % 3 === 2 ? '#e4405f' : k % 2 ? '#ffc93c' : '#ff8a00'}"/>`;
+    g += `<path d="M-3 ${len * 9.2 - 2} L3 ${len * 9.2 - 2} L0 ${len * 9.2 + 8}Z" fill="${GOLD}"/>`;
+    s += `<g transform="translate(${x} ${y0})"><g class="strand" style="animation-delay:${(-i * .37).toFixed(2)}s">${g}</g></g>`;
+  }
+  el.innerHTML = `<svg viewBox="0 0 ${W} ${H}" width="100%" preserveAspectRatio="xMidYMin meet" aria-hidden="true">${s}</svg>`;
+}
+const GRASS = "url(\"data:image/svg+xml," + encodeURIComponent(`<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 160 60'>${
+  Array.from({length: 34}, (_, i) => { const x = i * 4.8 + (i % 3), h = 26 + ((i * 37) % 30), lean = ((i * 13) % 9) - 4;
+    return `<path d='M${x} 60 Q${x + lean} ${60 - h * .6} ${x + lean * 2} ${60 - h} Q${x + 2 + lean} ${60 - h * .5} ${x + 4} 60Z' fill='${['#2f6b34','#3d7f3e','#4f9a4c','#5aa951'][i % 4]}'/>`; }).join('')
+}</svg>`) + "\")";
+
+function paintArt(root = document){
+  root.querySelectorAll('[data-art]').forEach(el => { const [k, ...args] = el.dataset.art.split(':'); el.innerHTML = ART[k](...args.map(a => a === 'flip' ? true : a)); });
+  root.querySelectorAll('[data-frame]').forEach(el => el.insertAdjacentHTML('afterbegin', FRAMES[el.dataset.frame]()));
+  root.querySelectorAll('.toran').forEach(toran);
+  root.querySelectorAll('.ground').forEach(g => g.style.backgroundImage = GRASS);
+}
+
+paintArt();
+let rz; addEventListener('resize', () => { clearTimeout(rz); rz = setTimeout(() => document.querySelectorAll('.toran').forEach(toran), 200); });
 
 /* ---------- music ---------- */
 const tracks = {}; let current = null, muted = false;
@@ -792,7 +1141,7 @@ $('#book').addEventListener('keydown', e => { if (e.key === 'Enter' || e.key ===
 // first page is painted under the cover so the swing reveals it
 resetPage(screens[0]); screens[0].classList.add('on');
 
-const noLines = ["Still no", "Nice try 😏", "Not allowed!", "Error 404: NO not found", "Bas karo 🙈"];
+const noLines = ["Still no", "Nice try", "Not allowed!", "Error 404: NO not found", "Bas karo"];
 let noCount = 0;
 $('#noBtn').addEventListener('click', () => go(5, 1));
 $('#stillNo').addEventListener('click', e => {
@@ -847,7 +1196,7 @@ CONFIG.events.forEach(ev => {
   el.querySelector('img').alt = ev.name + ' illustration';
   el.querySelector('h3').textContent = ev.name;
   el.querySelector('.when').textContent = ev.when;
-  if (ev.where) el.querySelector('.where').textContent = '📍 ' + ev.where; else el.querySelector('.where').remove();
+  if (ev.where) el.querySelector('.where').innerHTML = ART.pin() + ' ' + ev.where.replace(/[<&]/g, ''); else el.querySelector('.where').remove();
   el.querySelector('.vibe').textContent = ev.vibe;
   evWrap.appendChild(el);
 });
@@ -869,7 +1218,7 @@ tick(); setInterval(tick, 1000);
 
 function buildWa(){
   const name = $('#rName').value.trim() || '(your name)', yes = $('#attY').checked, n = $('#rCount').value;
-  const text = `Hi! RSVP for ${CONFIG.groom} & ${CONFIG.bride}'s wedding 💛\nName: ${name}\n` + (yes ? `Coming: Yes 🎉\nGuests: ${n}` : `Coming: Sorry, can't make it 🙏`);
+  const text = `Hi! RSVP for ${CONFIG.groom} & ${CONFIG.bride}'s wedding\nName: ${name}\n` + (yes ? `Coming: Yes\nGuests: ${n}` : `Coming: Sorry, can't make it`);
   $('#waLink').href = `https://wa.me/${CONFIG.whatsapp}?text=${encodeURIComponent(text)}`;
   $('#countField').style.display = yes ? '' : 'none';
 }
@@ -893,7 +1242,7 @@ function initScratch(){
   for (let i = 0; i < 260; i++) { ctx.fillStyle = `rgba(255,255,255,${Math.random() * .35})`; ctx.fillRect(Math.random() * w, Math.random() * h, 1.5, 1.5); }
   ctx.fillStyle = '#5a3d08'; ctx.textAlign = 'center';
   ctx.font = '700 ' + Math.round(w * .12) + 'px "Baloo 2", sans-serif'; ctx.fillText('Scratch', w / 2, h / 2 - 2);
-  ctx.font = '600 ' + Math.round(w * .09) + 'px "Baloo 2", sans-serif'; ctx.fillText('here ✨', w / 2, h / 2 + w * .11);
+  ctx.font = '600 ' + Math.round(w * .09) + 'px "Baloo 2", sans-serif'; ctx.fillText('here', w / 2, h / 2 + w * .11);
   ctx.globalCompositeOperation = 'destination-out';
 }
 (function scratchEvents(){
@@ -903,7 +1252,7 @@ function initScratch(){
   const line = (a, b) => { ctx.lineWidth = c.offsetWidth * .17; ctx.lineCap = 'round'; ctx.beginPath(); ctx.moveTo(...a); ctx.lineTo(...b); ctx.stroke(); };
   const check = () => { if (scratchDone) return; const d = ctx.getImageData(0, 0, c.width, c.height).data; let clear = 0, tot = 0;
     for (let i = 3; i < d.length; i += 64) { tot++; if (d[i] < 40) clear++; } if (clear / tot > .4) reveal(); };
-  const reveal = () => { scratchDone = true; c.classList.add('cleared'); $('#scratchHint').textContent = 'Mark your calendar! 💛';
+  const reveal = () => { scratchDone = true; c.classList.add('cleared'); $('#scratchHint').textContent = 'Mark your calendar!';
     if (window.confetti && !reduce) { const b = c.getBoundingClientRect(); confetti({particleCount:90, spread:80, origin:{x:(b.left + b.width / 2) / innerWidth, y:(b.top + b.height / 2) / innerHeight}, colors:['#fdc243','#e2bf6c','#f7a3c0'], zIndex:80}); } };
   c.addEventListener('pointerdown', e => { down = true; last = pos(e); line(last, last); c.setPointerCapture(e.pointerId); e.preventDefault(); });
   c.addEventListener('pointermove', e => { if (!down) return; const p = pos(e); line(last, p); last = p; if (++moves % 10 === 0) check(); });
@@ -920,12 +1269,11 @@ function splitChars(){
     h.innerHTML = h.textContent.split(' ').map(w => `<span style="display:inline-block;white-space:nowrap">${[...w].map(ch => `<span class="ch">${ch}</span>`).join('')}</span>`).join(' ');
   });
 }
-function plaqueIn(tl, scene, at){
-  const p = scene.querySelector('.plaque'); if (!p) return;
-  tl.from(p, {scale:.6, autoAlpha:0, duration:.8, ease:'back.out(1.5)'}, at)
-    .from(p.querySelectorAll('.crest'), {scaleX:0, duration:.6, ease:'power3.out', stagger:.08}, '<.15')
-    .from(p.querySelectorAll('.ch'), {yPercent:60, autoAlpha:0, rotate:-10, duration:.45, ease:'back.out(2)', stagger:.03}, '<.1')
-    .from(p.querySelectorAll('.sub'), {autoAlpha:0, y:10, duration:.4}, '<.3');
+function frameIn(tl, scene, at){
+  const f = scene.querySelector('.frm'); if (!f) return;
+  tl.from(f, {scale:.6, autoAlpha:0, duration:.8, ease:'back.out(1.5)'}, at)
+    .from(f.querySelectorAll('.ch'), {yPercent:60, autoAlpha:0, rotate:-10, duration:.45, ease:'back.out(2)', stagger:.03}, '<.2')
+    .from(f.querySelectorAll('.sub'), {autoAlpha:0, y:10, duration:.4}, '<.3');
 }
 function startMain(){
   (document.fonts ? document.fonts.ready : Promise.resolve()).then(initScratch);
@@ -942,48 +1290,65 @@ function startMain(){
 
   // palace breathes slowly as you scroll
   gsap.fromTo('#palace', {scale:1}, {scale:1.08, ease:'none', scrollTrigger:{trigger:'main', start:'top top', end:'bottom bottom', scrub:1}});
-  gsap.to('#cue', {autoAlpha:0, scrollTrigger:{trigger:'main', start:'top -40', end:'top -200', scrub:true}});
+
+  // decorations slide in from their side, and slide back out as the scene leaves
+  const decoOf = sc => [...sc.querySelectorAll('.deco .d')];
+  const away = el => { const f = el.dataset.from;
+    return f === 'l' ? {xPercent:-150, rotate:-6} : f === 'r' ? {xPercent:150, rotate:6} : f === 't' ? {yPercent:-130} : {yPercent:140}; };
+  const decoIn = (tl, sc, at, dur = 1) => decoOf(sc).forEach((el, k) => tl.from(el, {...away(el), duration:dur, ease:'power3.out'}, at + k * .07));
+  const decoOut = (tl, sc, at, dur = .9) => decoOf(sc).forEach((el, k) => tl.to(el, {...away(el), duration:dur, ease:'power2.in'}, at + k * .04));
 
   // first scene plays by itself when the invite opens
   const first = $('#s-wait');
   openTl = gsap.timeline({delay:.35});
-  plaqueIn(openTl, first, 0);
+  frameIn(openTl, first, 0);
+  decoIn(openTl, first, .15, 1.1);
   openTl.from(first.querySelector('.s-hero img'), {yPercent:60, autoAlpha:0, duration:1.1, ease:'power3.out'}, .45)
         .from(first.querySelector('.s-extra'), {x:60, autoAlpha:0, duration:.9, ease:'power3.out'}, .7)
-        .from('#cue', {autoAlpha:0, y:10, duration:.5}, 1.3);
+        .from('#cue', {autoAlpha:0, y:10, duration:.5}, 1.4);
 
   const mm = gsap.matchMedia();
   mm.add({desk: DESK, mob: `not all and ${DESK}`}, ctx => {
     const {desk} = ctx.conditions;
     $$('.scene').forEach(sc => {
       if (!desk) sc.style.setProperty('--top', sc.querySelector('.s-text').offsetHeight + 'px');
-      if (sc === first) {
-        // gentle drift away as the next scene arrives
-        gsap.to(sc.querySelectorAll('.s-text, .s-extra'), {y:-60, ease:'none', scrollTrigger:{trigger:sc, start:'top top', end:'bottom top', scrub:true}});
-        return;
-      }
-      const hero = sc.querySelector('.s-hero img'), extra = sc.querySelector('.s-extra:not(.m-hide), .s-extra.m-hide');
+      const hero = sc.querySelector('.s-hero img'), extra = sc.querySelector('.s-extra');
       const hasExtra = extra && getComputedStyle(extra).display !== 'none';
+      const isFirst = sc === first, isLast = sc.id === 's-bye';
       if (desk) {
-        // PC: title, couple and extra glide into their arches as the scene scrolls up
-        const tl = gsap.timeline({scrollTrigger:{trigger:sc, start:'top 82%', end:'top 12%', scrub:1}});
-        plaqueIn(tl, sc, 0);
-        if (!sc.querySelector('.plaque')) tl.from(sc.querySelector('.s-text'), {x:-70, autoAlpha:0, duration:1}, 0);
+        if (isFirst) {
+          const tl = gsap.timeline({scrollTrigger:{trigger:sc, start:'top top', end:'bottom 25%', scrub:1}});
+          tl.to(sc.querySelectorAll('.s-text, .s-extra'), {y:-70, duration:1.2, ease:'none'}, 0);
+          decoOut(tl, sc, .3);
+          return;
+        }
+        const tl = gsap.timeline({scrollTrigger:{trigger:sc, start:'top 85%', end: isLast ? 'top 5%' : 'bottom 20%', scrub:1}});
+        frameIn(tl, sc, 0);
+        if (!sc.querySelector('.frm')) tl.from(sc.querySelector('.s-text'), {x:-70, autoAlpha:0, duration:1}, 0);
         tl.from(hero, {yPercent:35, autoAlpha:0, duration:1.2, ease:'power2.out'}, .2);
         if (hasExtra) tl.from(extra, {x:80, rotate:4, autoAlpha:0, duration:1, ease:'power2.out'}, .35);
+        decoIn(tl, sc, .1);
+        if (!isLast) { tl.to({}, {duration:1.4}); decoOut(tl, sc, tl.duration()); }
       } else {
-        // Phone: scene pins; title forms, extra appears, then the couple rises in its place
-        const enter = gsap.timeline({scrollTrigger:{trigger:sc, start:'top 92%', end:'top 8%', scrub:1}});
-        plaqueIn(enter, sc, 0);
-        if (!sc.querySelector('.plaque')) enter.from(sc.querySelector('.s-text'), {y:50, autoAlpha:0, duration:1}, 0);
+        if (isFirst) {
+          const pin = gsap.timeline({scrollTrigger:{trigger:sc, start:'top top', end:'+=75%', pin:true, scrub:1, anticipatePin:1}});
+          pin.to('#cue', {autoAlpha:0, duration:.2}, 0).to({}, {duration:.5});
+          decoOut(pin, sc, .45);
+          return;
+        }
+        const enter = gsap.timeline({scrollTrigger:{trigger:sc, start:'top 92%', end:'top 6%', scrub:1}});
+        frameIn(enter, sc, 0);
+        if (!sc.querySelector('.frm')) enter.from(sc.querySelector('.s-text'), {y:50, autoAlpha:0, duration:1}, 0);
+        decoIn(enter, sc, .15);
         if (hasExtra) enter.from(extra, {scale:.7, autoAlpha:0, duration:1, ease:'power2.out'}, .5);
         else enter.from(hero, {yPercent:70, autoAlpha:0, duration:1.2, ease:'power2.out'}, .4);
         if (hasExtra) {
-          const pin = gsap.timeline({scrollTrigger:{trigger:sc, start:'top top', end:'+=' + (sc.id === 's-date' ? 160 : 110) + '%', pin:true, scrub:1, anticipatePin:1}});
-          pin.to({}, {duration:.6})                                              // hold: read / scratch
+          const pin = gsap.timeline({scrollTrigger:{trigger:sc, start:'top top', end:'+=' + (sc.id === 's-date' ? 200 : 150) + '%', pin:true, scrub:1, anticipatePin:1}});
+          pin.to({}, {duration:.6})
              .to(extra, {scale:.8, yPercent:-12, autoAlpha:0, duration:.6, ease:'power2.in'})
              .from(hero, {yPercent:100, duration:1, ease:'power2.out'}, '<.25')
-             .to({}, {duration:.35});
+             .to({}, {duration:.6});
+          decoOut(pin, sc, pin.duration());
         }
       }
     });
