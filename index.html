@@ -43,7 +43,7 @@ button,a,input,select,textarea{font:inherit}
 /* ============ BOOK COVER ============ */
 #book{position:fixed;inset:0;z-index:70;perspective:2400px;cursor:pointer}
 #book.done{display:none}
-.bk{position:absolute;inset:0;transform-origin:left center;transform-style:preserve-3d;transition:transform 1.8s cubic-bezier(.62,.02,.2,1)}
+.bk{position:absolute;inset:0;transform-origin:left center;transform-style:preserve-3d;transition:transform 1.25s cubic-bezier(.62,.02,.2,1)}
 #book.open .bk{transform:rotateY(-176deg)}
 .bk-face{position:absolute;inset:0;backface-visibility:hidden;-webkit-backface-visibility:hidden;overflow:hidden}
 .bk-front{background:radial-gradient(120% 80% at 50% 38%,#931f3a 0%,#6a1226 55%,#430a18 100%);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:min(2.2svh,18px);
@@ -75,6 +75,17 @@ button,a,input,select,textarea{font:inherit}
 .bars i.done::after{width:100%}
 .scr{position:absolute;inset:0;visibility:hidden;background:var(--paper);overflow:hidden;transform-origin:left center;backface-visibility:hidden;-webkit-backface-visibility:hidden;cursor:pointer;z-index:1}
 .scr.on{visibility:visible}
+.scr{transition:transform .5s cubic-bezier(.65,0,.3,1)}
+.scr.exit-left{transform:translateX(-102%);z-index:4}
+.scr.exit-down{transform:translateY(102%);z-index:3}
+.scr.enter-top{transform:translateY(-102%);transition:none;z-index:4}
+.reveal{transform:translate(36%,52%) scale(.72);transition:transform .6s cubic-bezier(.2,.9,.3,1)}
+.reveal.in{transform:none}
+.js-line2.pop{animation:tagPop .32s cubic-bezier(.2,.9,.3,1.3)}
+@keyframes tagPop{from{opacity:0;transform:translateY(6px) scale(.92)}to{opacity:1;transform:none}}
+.js-line2{display:inline-block}
+.meetword{top:44%;left:10%!important;right:auto!important;text-align:left;font-family:var(--f-hand);font-size:calc(var(--fh) * .05);color:var(--ink);transition:transform .4s cubic-bezier(.6,0,.3,1)}
+.meetword.gone{transform:translateX(-120vw)}
 .scr.flip-out{animation:flipOut .95s cubic-bezier(.55,0,.3,1) forwards;z-index:5}
 .scr.flip-in{animation:flipIn .95s cubic-bezier(.55,0,.3,1) forwards;z-index:5}
 .scr::after{content:"";position:absolute;inset:0;z-index:20;pointer-events:none;opacity:0;background:linear-gradient(90deg,rgba(60,30,10,0) 30%,rgba(60,30,10,.35))}
@@ -91,13 +102,13 @@ button,a,input,select,textarea{font:inherit}
 .side{display:none;position:absolute;inset:-30px;width:calc(100% + 60px);height:calc(100% + 60px);object-fit:cover;filter:blur(26px) saturate(.9);opacity:.85}
 .t{position:absolute;left:var(--safe);right:var(--safe);margin:0;text-align:center}
 .eyebrow{font-family:var(--f-type);font-size:calc(var(--fh) * .019);letter-spacing:.22em;text-transform:uppercase;color:var(--maroon)}
-.hand{font-family:var(--f-hand);font-weight:400;font-size:calc(var(--fh) * .052);line-height:1.1;color:var(--ink);min-height:1.1em}
+.hand{font-family:var(--f-hand);font-weight:400;font-size:min(calc(var(--fh) * .052),calc((100vw - 36px) / 10.6));line-height:1.1;color:var(--ink);min-height:1.1em;white-space:nowrap}
 .hand-sm{font-family:var(--f-hand);font-size:calc(var(--fh) * .032);color:var(--maroon);min-height:1.3em}
 .hand-sm span{background:linear-gradient(transparent 70%,rgba(233,135,159,.45) 0)}
 .caret::after{content:"|";display:inline-block;margin-left:2px;color:var(--maroon);animation:blink .8s steps(1) infinite;font-weight:400}
 @keyframes blink{50%{opacity:0}}
-.p-bride .eyebrow{top:6.5%}.p-bride .hand{top:9.3%}.p-bride .hand-sm{top:16%}
-.p-groom .eyebrow{top:5.5%}.p-groom .hand{top:8.3%}.p-groom .hand-sm{top:14.8%}
+.p-bride .hand{top:5.6%}.p-bride .hand-sm{top:12.2%}
+.p-groom .hand{top:5%}.p-groom .hand-sm{top:11.4%}
 .pre{opacity:0}
 .fadein{transition:opacity .8s,transform .8s cubic-bezier(.2,.8,.2,1)}
 .write{clip-path:inset(-30% 100% -30% -10%);transition:clip-path 1.3s cubic-bezier(.45,0,.2,1)}
@@ -159,11 +170,10 @@ button,a,input,select,textarea{font:inherit}
   .frame.pt{--fh:100svh;--fw:calc(100svh * .5625)}
   .side{display:block}
   .l .eyebrow{font-size:calc(var(--fh) * .02)}
-  .l .hand{font-size:calc(var(--fh) * .06)}
+  .l .hand{font-size:min(calc(var(--fh) * .06),calc((100vw - 36px) / 10.6))}
   .l .hand-sm{font-size:calc(var(--fh) * .038)}
-  .p-bride .l .eyebrow,.p-groom .l .eyebrow{top:4%}
-  .p-bride .l .hand,.p-groom .l .hand{top:7.2%}
-  .p-bride .l .hand-sm,.p-groom .l .hand-sm{top:15%}
+  .p-bride .l .hand,.p-groom .l .hand{top:4.5%}
+  .p-bride .l .hand-sm,.p-groom .l .hand-sm{top:12.5%}
   .p-story .l .story{left:22%;right:22%;top:5%}
   .p-story .l .n1{top:28%}.p-story .l .n2{top:55%}.p-story .l .hashb{top:68%}.p-story .l .dt{top:76%}
   .p-nope .l .t{left:25%;right:25%;top:6%}
@@ -416,7 +426,8 @@ fieldset.field{border:0;margin:0 0 14px;padding:0}
 footer{position:relative;z-index:2;text-align:center;padding:18px var(--gut-r) calc(env(safe-area-inset-bottom,0px) + 22px) var(--gut-l);font-style:italic;font-size:16px;color:var(--ivory);background:var(--green)}
 .fab{position:fixed;z-index:60;right:max(14px,env(safe-area-inset-right,0px));border:0;width:44px;height:44px;border-radius:50%;background:rgba(255,250,240,.94);color:var(--maroon);box-shadow:0 4px 12px rgba(0,0,0,.15);cursor:pointer;font-size:19px}
 .replay{bottom:calc(env(safe-area-inset-bottom,0px) + 14px)}
-.music{top:calc(env(safe-area-inset-top,0px) + 22px)}
+.music{bottom:calc(env(safe-area-inset-bottom,0px) + 66px)}
+#intro~.music,.music{z-index:75}
 .music.off{opacity:.6;text-decoration:line-through}
 
 /* ============ PC / landscape ============ */
@@ -476,26 +487,22 @@ footer{position:relative;z-index:2;text-align:center;padding:18px var(--gut-r) c
 
 <!-- ================= INTRO PAGES ================= -->
 <div id="intro" aria-label="Invitation intro">
-  <div class="bars" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
 
   <div class="scr p-bride" data-i="0" data-kind="person" data-who="bride" role="button" tabindex="0" aria-label="Next page">
     <div class="frame l">
       <picture><source media="(min-aspect-ratio: 1/1)" srcset="img/bride-l.webp"><img class="bg reveal" src="img/bride-p.webp" alt="The bride, Komal"></picture>
-      <p class="t eyebrow fadein pre">Meet the bride</p>
       <p class="t hand js-line1"></p>
       <p class="t hand-sm"><span class="js-line2"></span></p>
     </div>
-    <span class="tap">Tap ›</span>
   </div>
 
   <div class="scr p-groom" data-i="1" data-kind="person" data-who="groom" role="button" tabindex="0" aria-label="Next page">
     <div class="frame l">
       <picture><source media="(min-aspect-ratio: 1/1)" srcset="img/groom-l.webp"><img class="bg reveal" src="img/groom-p.webp" alt="The groom, Sparsh"></picture>
-      <p class="t eyebrow fadein pre">Meet the groom</p>
+      <p class="t meetword"></p>
       <p class="t hand js-line1"></p>
       <p class="t hand-sm"><span class="js-line2"></span></p>
     </div>
-    <span class="tap">Tap ›</span>
   </div>
 
   <div class="scr p-couple" data-i="2" data-kind="couple" role="button" tabindex="0" aria-label="Next page">
@@ -511,7 +518,6 @@ footer{position:relative;z-index:2;text-align:center;padding:18px var(--gut-r) c
       <span class="dood" style="left:7%;top:72%"><svg viewBox="0 0 24 24"><path d="m12 2 2.9 6.6 7.1.6-5.4 4.7 1.6 7L12 17.3 5.8 21l1.6-7L2 9.2l7.1-.6z"/></svg></span>
       <span class="dood" style="right:7%;top:79%"><svg viewBox="0 0 24 24"><path d="M12 21s-7.5-4.6-9.6-9.2C.9 8.4 3 4.5 6.7 4.5c2.2 0 3.6 1.3 5.3 3.2 1.7-1.9 3.1-3.2 5.3-3.2 3.7 0 5.8 3.9 4.3 7.3C19.5 16.4 12 21 12 21z"/></svg></span>
     </div>
-    <span class="tap">Tap ›</span>
   </div>
 
   <div class="scr p-story" data-i="3" data-kind="story" role="button" tabindex="0" aria-label="Next page">
@@ -523,7 +529,6 @@ footer{position:relative;z-index:2;text-align:center;padding:18px var(--gut-r) c
       <p class="t hashb fadein pre" data-k="hashtag"></p>
       <p class="t dt js-date"></p>
     </div>
-    <span class="tap">One last question ›</span>
   </div>
 
   <div class="scr gate" data-i="4" data-kind="gate">
@@ -576,7 +581,6 @@ footer{position:relative;z-index:2;text-align:center;padding:18px var(--gut-r) c
       <div class="d bushr" data-from="r" data-art="bush"></div>
       <div class="d bl" data-from="l" data-art="dhol"></div>
       <div class="d br" data-from="r" data-art="shehnai"></div>
-      <div class="ground"></div>
     </div>
     <span class="cue" id="cue">Scroll <span>↓</span></span>
   </section>
@@ -600,7 +604,6 @@ footer{position:relative;z-index:2;text-align:center;padding:18px var(--gut-r) c
       <div class="d kal" data-from="l" data-art="kalash"></div>
       <div class="d elr flipx" data-from="r" data-art="elephant"></div>
       <div class="d diyas" data-from="b"><div data-art="diya"></div><div data-art="diya"></div><div data-art="diya"></div></div>
-      <div class="ground"></div>
     </div>
   </section>
 
@@ -626,7 +629,6 @@ footer{position:relative;z-index:2;text-align:center;padding:18px var(--gut-r) c
       <div class="d mr" data-from="r" data-art="banana:flip"></div>
       <div class="d bl" data-from="l" data-art="shehnai:#7c1d33:#ff8a00:#ffd447"></div>
       <div class="d br" data-from="r" data-art="dhol:#2f7d4f:#e75480:#ffd447"></div>
-      <div class="ground"></div>
     </div>
   </section>
 
@@ -728,7 +730,6 @@ footer{position:relative;z-index:2;text-align:center;padding:18px var(--gut-r) c
       <div class="d toran" data-from="t"></div>
       <div class="d ell" data-from="l" data-art="elephant"></div>
       <div class="d elr flipx" data-from="r" data-art="elephant"></div>
-      <div class="ground"></div>
     </div>
   </section>
 </main>
@@ -752,8 +753,8 @@ const CONFIG = {
   groomLine2: "Hard to satisfy",
   brideLine1: "Ghar ki choti beti",
   brideLine2: "Social butterfly",
-  brideTags: ["Social butterfly", "Pampered", "Curious mind", "Unapologetically herself"],  // cycle under "Ghar ki choti beti"
-  groomTags: ["Hard to satisfy", "Temperamental", "Thoughtful", "Practical"],              // cycle under "Ghar ka eklauta beta"
+  brideTags: ["Pampered", "Social butterfly", "Curious mind", "Unapologetically herself"],  // cycle under "Ghar ki choti beti"
+  groomTags: ["Responsible", "Temperamental", "Hard to satisfy", "Thoughtful", "Practical"],              // cycle under "Ghar ka eklauta beta"
   story: "After thoughtful conversations, family blessings and a little bit of destiny… we said YES to forever.",
   groomOf: "S/o Manoj Kumar Upadhyay & Sunila Upadhyay",
   brideOf: "D/o Vishwanath Sharma & Manju Devi",
@@ -765,7 +766,7 @@ const CONFIG = {
   mapsUrl: "https://maps.app.goo.gl/uYPgcxHfHSTcJ5eb8",
   showRsvp: false,                            // RSVP on hold — set true to show the WhatsApp RSVP form
   whatsapp: "",                               // RSVP number with country code, e.g. "917004265262"
-  music: { intro: "music/intro.mp3", main: "music/main.mp3" },  // drop the MP3s into a /music folder; missing files are skipped
+  music: { intro: "music/intro.m4a", main: "music/main.mp3" },  // drop the MP3s into a /music folder; missing files are skipped
   events: [
     { name:"Shubh Tilak",          img:"e-sangeet", when:"Tuesday, 17 Nov 2026",   where:"", vibe:"Blessings for the groom" },
     { name:"Janeu & Haldi Kalash", img:"e-haldi",   when:"Wednesday, 18 Nov 2026", where:"", vibe:"Sacred thread & haldi rituals" },
@@ -1004,7 +1005,7 @@ let rz; addEventListener('resize', () => { clearTimeout(rz); rz = setTimeout(() 
 const tracks = {}; let current = null, muted = false;
 function track(k){
   const src = CONFIG.music && CONFIG.music[k]; if (!src) return null;
-  if (!tracks[k]) { const a = new Audio(src); a.loop = true; a.preload = 'auto';
+  if (!tracks[k]) { const a = new Audio(src); a.loop = k !== 'intro'; a.preload = 'auto';
     a.addEventListener('error', () => { a.dead = true; if (current === a) { current = null; $('#musicBtn').hidden = true; } });
     tracks[k] = a; }
   return tracks[k].dead ? null : tracks[k];
@@ -1016,125 +1017,106 @@ function playTrack(k){
   if (current && current !== a) { const old = current; fade(old, 0, 900, () => old.pause()); }
   current = a; if (!a || muted) return;
   a.volume = 0; a.currentTime = 0;
-  a.play().then(() => { $('#musicBtn').hidden = false; fade(a, .85, 1200); }).catch(() => {});
+  a.play().then(() => { $('#musicBtn').hidden = false; fade(a, .9, k === 'intro' ? 200 : 1200); }).catch(() => {});
 }
 $('#musicBtn').addEventListener('click', () => {
   muted = !muted; $('#musicBtn').classList.toggle('off', muted); $('#musicBtn').setAttribute('aria-label', muted ? 'Play music' : 'Mute music');
   if (!current) return; if (muted) current.pause(); else { current.volume = .85; current.play().catch(() => {}); }
 });
 
-/* ---------- book cover + intro pages ---------- */
-const screens = $$('.scr'), bars = $$('.bars i');
-let cur = -1, tok = 0, busy = false;
-const sleep = ms => new Promise(r => setTimeout(r, ms));
-const alive = t => t === tok;
-async function type(el, text, speed, t){
-  el.textContent = ''; el.classList.add('caret');
-  for (const ch of [...text]) { if (!alive(t)) return false; el.textContent += ch; await sleep(reduce ? 0 : speed + (ch === ' ' ? speed : 0)); }
-  return true;
+/* ---------- book cover + intro, timed to the reel's soundtrack ---------- */
+const screens = $$('.scr');
+let cur = -1, runId = 0, clock0 = 0;
+const alive = id => id === runId;
+function resetPage(s){
+  s.querySelectorAll('.js-line1,.js-line2,.js-meet,.js-story,.js-date,.meetword').forEach(e => { e.textContent = ''; e.classList.remove('caret', 'gone', 'pop'); });
+  s.querySelectorAll('.write').forEach(e => e.classList.remove('done'));
+  s.querySelectorAll('.fadein').forEach(e => e.classList.add('pre'));
+  s.querySelectorAll('.pola,.dood').forEach(e => e.classList.remove('in'));
+  const img = s.querySelector('.reveal');
+  if (img && !reduce) { img.classList.remove('in'); const g = 'radial-gradient(circle, transparent 0, transparent 100%)'; img.style.webkitMaskImage = g; img.style.maskImage = g; }
 }
-async function erase(el, speed, t){
-  while (el.textContent.length) { if (!alive(t)) return false; el.textContent = [...el.textContent].slice(0, -1).join(''); await sleep(speed); }
-  return true;
+function showPage(i, how){
+  const from = screens[cur], next = screens[i]; if (!next || from === next) return;
+  resetPage(next);
+  if (from && how && !reduce) {
+    if (how === 'down') { next.classList.add('enter-top'); next.classList.add('on'); void next.offsetWidth; next.classList.remove('enter-top'); from.classList.add('exit-down'); }
+    else { next.classList.add('on'); from.classList.add('exit-left'); }
+    setTimeout(() => from.classList.remove('on', 'exit-left', 'exit-down'), 520);
+  } else { next.classList.add('on'); if (from) from.classList.remove('on'); }
+  cur = i;
+}
+function typeOver(el, text, secs, id){
+  const chars = [...text], step = secs * 1000 / Math.max(1, chars.length);
+  el.textContent = ''; el.classList.add('caret'); let k = 0;
+  (function tick(){ if (!alive(id)) return; el.textContent = chars.slice(0, ++k).join('');
+    if (k < chars.length) setTimeout(tick, step); else setTimeout(() => el.classList.remove('caret'), 350); })();
 }
 function reveal(img, cx, cy, ms){
   if (reduce || !img) return;
   const t0 = performance.now(), set = r => { const g = `radial-gradient(circle at ${cx} ${cy}, #000 ${r}%, transparent ${r + 16}%)`; img.style.webkitMaskImage = g; img.style.maskImage = g; };
-  set(0);
-  (function step(now){
-    const p = Math.min(1, (now - t0) / ms), e = 1 - Math.pow(1 - p, 3);
-    set(e * 110);
-    if (p < 1) requestAnimationFrame(step); else { img.style.webkitMaskImage = ''; img.style.maskImage = ''; }
-  })(t0);
+  (function step(now){ const p = Math.min(1, (now - t0) / ms), e = 1 - Math.pow(1 - p, 3); set(26 + e * 84);
+    if (p < 1) requestAnimationFrame(step); else { img.style.webkitMaskImage = ''; img.style.maskImage = ''; } })(t0);
 }
-function resetPage(s){
-  s.querySelectorAll('.js-line1,.js-line2,.js-meet,.js-story,.js-date').forEach(e => { e.textContent = ''; e.classList.remove('caret'); });
-  s.querySelectorAll('.write').forEach(e => e.classList.remove('done'));
-  s.querySelectorAll('.fadein').forEach(e => e.classList.add('pre'));
-  s.querySelectorAll('.pola,.dood').forEach(e => e.classList.remove('in'));
-  const img = s.querySelector('.reveal'); if (img && !reduce) { const g = 'radial-gradient(circle, transparent 0, transparent 100%)'; img.style.webkitMaskImage = g; img.style.maskImage = g; }
+function personIn(page){
+  const img = page.querySelector('.reveal'); if (!img) return;
+  img.classList.add('in');
+  reveal(img, '50%', matchMedia('(min-aspect-ratio: 1/1)').matches ? '62%' : '66%', 1000);
 }
-async function runPage(i, t){
-  const s = screens[i], kind = s.dataset.kind;
-  if (kind === 'person') {
-    const who = s.dataset.who, land = matchMedia('(min-aspect-ratio: 1/1)').matches;
-    await sleep(150); if (!alive(t)) return;
-    reveal(s.querySelector('.reveal'), '50%', land ? '62%' : '66%', 2300);
-    s.querySelector('.eyebrow').classList.remove('pre');
-    await sleep(500);
-    const l1 = s.querySelector('.js-line1'), l2 = s.querySelector('.js-line2');
-    if (!await type(l1, CONFIG[who + 'Line1'], 70, t)) return;
-    l1.classList.remove('caret');
-    const tags = CONFIG[who + 'Tags'];
-    for (let k = 0; alive(t); k = (k + 1) % tags.length) {
-      if (!await type(l2, tags[k], 55, t)) return;
-      await sleep(1400); if (!alive(t)) return;
-      if (tags.length === 1) { l2.classList.remove('caret'); return; }
-      if (!await erase(l2, 28, t)) return;
-      await sleep(250);
-    }
-  }
-  if (kind === 'couple') {
-    await sleep(200);
-    if (!await type(s.querySelector('.js-meet'), 'MEET THE', 75, t)) return;
-    s.querySelector('.js-meet').classList.remove('caret');
-    s.querySelector('.cw').classList.add('done');
-    await sleep(500); if (!alive(t)) return;
-    s.querySelector('.pola').classList.add('in');
-    await sleep(700); if (!alive(t)) return;
-    s.querySelector('.nm2').classList.add('done');
-    for (const d of s.querySelectorAll('.dood')) { await sleep(180); if (!alive(t)) return; d.classList.add('in'); }
-  }
-  if (kind === 'story') {
-    await sleep(200);
-    if (!await type(s.querySelector('.js-story'), CONFIG.story, 26, t)) return;
-    s.querySelector('.js-story').classList.remove('caret');
-    s.querySelector('.n1').classList.add('done'); await sleep(900); if (!alive(t)) return;
-    s.querySelector('.n2').classList.add('done'); await sleep(900); if (!alive(t)) return;
-    s.querySelector('.hashb').classList.remove('pre'); await sleep(400);
-    if (await type(s.querySelector('.js-date'), data.dateLongCaps, 45, t)) s.querySelector('.js-date').classList.remove('caret');
-  }
+function tag(page, text){ const el = page.querySelector('.js-line2'); el.classList.remove('pop'); el.textContent = text; void el.offsetWidth; el.classList.add('pop'); }
+
+// the reel's own timeline, in seconds from the moment the book is opened
+function cues(){
+  const [pB, pG, pC, pS] = screens;
+  const c = [
+    [0.00, () => showPage(0)],
+    [0.20, id => typeOver(pB.querySelector('.js-line1'), CONFIG.brideLine1, 1.5, id)],
+    [0.45, () => personIn(pB)],
+    [5.80, () => showPage(1, 'left')],
+    [6.15, id => typeOver(pG.querySelector('.meetword'), 'meet', .5, id)],
+    [6.90, () => pG.querySelector('.meetword').classList.add('gone')],
+    [7.00, id => typeOver(pG.querySelector('.js-line1'), CONFIG.groomLine1, 1.4, id)],
+    [7.30, () => personIn(pG)],
+    [12.60, () => showPage(2, 'left')],
+    [12.95, id => typeOver(pC.querySelector('.js-meet'), 'MEET THE', .3, id)],
+    [13.05, () => { pC.querySelector('.cw').classList.add('done'); pC.querySelector('.pola').classList.add('in'); }],
+    [13.35, () => pC.querySelector('.nm2').classList.add('done')],
+    [17.40, () => { showPage(3, 'down'); pS.querySelector('.js-story').textContent = CONFIG.story; }],
+    [18.00, () => pS.querySelector('.n1').classList.add('done')],
+    [18.20, () => pS.querySelector('.n2').classList.add('done')],
+    [18.40, () => pS.querySelector('.hashb').classList.remove('pre')],
+    [18.60, id => typeOver(pS.querySelector('.js-date'), data.dateLongCaps, .45, id)],
+    [24.40, () => showPage(4)]
+  ];
+  [1.8, 2.8, 3.8, 5.0].forEach((t, k) => CONFIG.brideTags[k] && c.push([t, () => tag(pB, CONFIG.brideTags[k])]));
+  [8.6, 9.4, 10.4, 11.4, 12.2].forEach((t, k) => CONFIG.groomTags[k] && c.push([t, () => tag(pG, CONFIG.groomTags[k])]));
+  pC.querySelectorAll('.dood').forEach((d, k) => c.push([13.6 + k * .12, () => d.classList.add('in')]));
+  return c.sort((a, b) => a[0] - b[0]);
 }
-function updateBars(i){
-  bars.forEach((b, k) => b.classList.toggle('done', k < i || i >= 4));
-  $('.bars').style.opacity = i >= 4 || i < 0 ? 0 : 1;
+function runIntro(){
+  const id = ++runId, list = cues(); let k = 0;
+  clock0 = performance.now();
+  const a = track('intro');
+  const t = () => (a && !a.dead && !a.paused && a.currentTime > 0) ? a.currentTime : (performance.now() - clock0) / 1000;
+  (function loop(){
+    if (!alive(id)) return;
+    const now = t();
+    while (k < list.length && list[k][0] <= now) { list[k][1](id); k++; }
+    if (k < list.length) requestAnimationFrame(loop);
+  })();
+  // keep going if the tab is hidden and frames stop
+  const iv = setInterval(() => { if (!alive(id) || k >= list.length) return clearInterval(iv); const now = t(); while (k < list.length && list[k][0] <= now) { list[k][1](id); k++; } }, 250);
 }
-function go(to, dir = 1){
-  if (busy || to === cur || !screens[to]) return;
-  const from = screens[cur], next = screens[to], t = ++tok;
-  resetPage(next); next.classList.add('on'); updateBars(to);
-  const prev = cur; cur = to;
-  if (!from || reduce) { if (from) from.classList.remove('on'); runPage(to, t); return; }
-  busy = true;
-  const flipper = dir >= 0 ? from : next;
-  flipper.classList.add(dir >= 0 ? 'flip-out' : 'flip-in');
-  const done = e => {
-    if (e && e.target !== flipper) return;
-    flipper.removeEventListener('animationend', done);
-    from.classList.remove('flip-out', 'on'); next.classList.remove('flip-in'); busy = false;
-  };
-  flipper.addEventListener('animationend', done);
-  setTimeout(() => { if (busy) done(); }, 1400);
-  setTimeout(() => runPage(to, t), dir >= 0 ? 380 : 700);
-}
-screens.forEach(s => {
-  const i = +s.dataset.i; if (i > 3) return;
-  s.addEventListener('click', e => { const back = e.clientX && e.clientX < innerWidth * 0.25 && i > 0; go(back ? i - 1 : i + 1, back ? -1 : 1); });
-  s.addEventListener('keydown', e => {
-    if (e.key === 'Enter' || e.key === ' ' || e.key === 'ArrowRight') { e.preventDefault(); go(i + 1, 1); }
-    if (e.key === 'ArrowLeft' && i > 0) go(i - 1, -1);
-  });
-});
 document.body.classList.add('locked');
-updateBars(-1);
 
 function openBook(){
   const b = $('#book'); if (b.classList.contains('open')) return;
-  if (!current) playTrack('intro');
-  cur = -1; tok++; screens.forEach(s => s.classList.remove('on', 'flip-out', 'flip-in'));
-  go(0);
+  if (current) { current.pause(); current = null; }
+  playTrack('intro');
+  cur = -1; screens.forEach(s => s.classList.remove('on', 'exit-left', 'exit-down'));
+  runIntro();
   b.classList.add('open');
-  setTimeout(() => b.classList.add('done'), reduce ? 0 : 1850);
+  setTimeout(() => b.classList.add('done'), reduce ? 0 : 1300);
 }
 $('#book').addEventListener('click', openBook);
 $('#book').addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); openBook(); } });
@@ -1143,7 +1125,7 @@ resetPage(screens[0]); screens[0].classList.add('on');
 
 const noLines = ["Still no", "Nice try", "Not allowed!", "Error 404: NO not found", "Bas karo"];
 let noCount = 0;
-$('#noBtn').addEventListener('click', () => go(5, 1));
+$('#noBtn').addEventListener('click', () => showPage(5, 'left'));
 $('#stillNo').addEventListener('click', e => {
   const b = e.currentTarget; noCount++;
   b.textContent = noLines[Math.min(noCount, noLines.length - 1)];
@@ -1161,7 +1143,7 @@ function burst(){
 }
 let opened = false, lenis = null, openTl = null;
 function openInvite(){
-  tok++;
+  runId++;
   $('#book').classList.add('open', 'done');
   $('#intro').classList.add('gone');
   document.body.classList.remove('locked');
@@ -1180,9 +1162,9 @@ $('#replay').addEventListener('click', () => {
   noCount = 0; const b = $('#stillNo'); b.hidden = false; b.textContent = noLines[0]; b.style.transform = '';
   if (lenis) lenis.stop();
   if (current) { const old = current; fade(old, 0, 600, () => old.pause()); current = null; }
-  tok++; busy = false; cur = -1;
-  screens.forEach(s => s.classList.remove('on', 'flip-out', 'flip-in'));
-  resetPage(screens[0]); screens[0].classList.add('on'); updateBars(-1);
+  runId++; cur = -1;
+  screens.forEach(s => s.classList.remove('on', 'exit-left', 'exit-down'));
+  resetPage(screens[0]); screens[0].classList.add('on');
   document.body.classList.add('locked'); $('#intro').classList.remove('gone'); $('#replay').hidden = true;
   $('#book').classList.remove('done'); void $('#book').offsetWidth; $('#book').classList.remove('open');
 });
