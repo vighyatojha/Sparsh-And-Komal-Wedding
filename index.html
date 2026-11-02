@@ -1415,7 +1415,12 @@ const pad = n => String(n).padStart(2, '0');
 function tick(){
   const remaining = W.getTime() - Date.now();
   const status = $("#countStatus");
-  if (status) status.hidden = remaining > 0;
+  if (status) {
+    status.hidden = remaining > 0;
+    if (remaining <= 0) status.textContent = Date.now() < W.getTime() + 86400000
+      ? "The celebration has begun. Today is the day!"
+      : "Thank you for celebrating with us!";
+  }
   let s = Math.max(0, Math.floor(remaining / 1000));
   $('#cD').textContent = pad(Math.floor(s / 86400)); s %= 86400;
   $('#cH').textContent = pad(Math.floor(s / 3600)); s %= 3600;
