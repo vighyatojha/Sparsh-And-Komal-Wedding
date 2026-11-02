@@ -6,6 +6,13 @@
 <meta name="theme-color" content="#6a1226">
 <meta property="og:title" content="Sparsh & Komal Wedding">
 <meta property="og:description" content="You're invited! Tap to open our wedding invitation.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://vighyatojha.github.io/Sparsh-And-Komal-Wedding/">
+<meta property="og:image" content="https://vighyatojha.github.io/Sparsh-And-Komal-Wedding/img/c-maroon.webp">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Sparsh & Komal Wedding">
+<meta name="twitter:description" content="A heartfelt invitation to celebrate Sparsh and Komal.">
+<link rel="canonical" href="https://vighyatojha.github.io/Sparsh-And-Komal-Wedding/">
 <title>Sparsh & Komal Wedding</title>
 <meta name="claude:viewport-fit-sides" content="cover">
 <meta name="description" content="You're invited to the wedding of Sparsh & Komal">
@@ -39,6 +46,10 @@ body.locked{overflow:hidden;height:100svh}
 img{max-width:100%;display:block}
 button,a,input,select,textarea{font:inherit}
 :focus-visible{outline:3px solid var(--gold);outline-offset:3px}
+
+.count-status{margin:14px 0 0;color:var(--maroon);font-family:var(--f-hand);font-size:clamp(18px,2.4vw,24px);font-weight:700;text-align:center}
+.wa[aria-disabled="true"]{opacity:.65;cursor:not-allowed;pointer-events:none}
+.wa:focus-visible,.cal:focus-visible,.btn-gold:focus-visible{outline:3px solid var(--gold);outline-offset:4px}
 
 /* ============ BOOK COVER ============ */
 #book{position:fixed;inset:0;z-index:70;perspective:2400px;cursor:pointer}
@@ -397,8 +408,7 @@ html.motion .scene .s-hero,.s-hero{z-index:2}
 .bellsvg .swing{transform-origin:20px 0;animation:aSwing 2.4s ease-in-out infinite alternate}
 .toran .strand{transform-origin:0 0;animation:aSwing 2.8s ease-in-out infinite alternate}
 @keyframes aSwing{from{transform:rotate(-6deg)}to{transform:rotate(6deg)}}
-.diya .flame{transform-origin:30px 30px;animation:aFlick .16s ease-in-out infinite alternate}
-@keyframes aFlick{from{transform:scale(.92,.86)}to{transform:scale(1.04,1.08)}}
+.diya .flame{transform-origin:30px 30px;animation:aFlick .16s ease-in-out infinite alternate}@keyframes aFlick{from{transform:scale(.92,.86)}to{transform:scale(1.04,1.08)}}
 .diya .glow{animation:aGlow 1.3s ease-in-out infinite alternate}
 @keyframes aGlow{from{opacity:.55}to{opacity:1}}
 .fw .burst{transform-origin:0 0;animation:aBurst 2.8s ease-out infinite}
@@ -797,8 +807,7 @@ footer{position:relative;z-index:2;text-align:center;padding:18px var(--gut-r) c
         <p class="small" style="margin-top:4px;color:var(--maroon)">वक्रतुण्ड महाकाय सूर्यकोटि समप्रभः ।<br>निर्विघ्नं कुरु मे देव सर्वकार्येषु सर्वदा ॥</p>
         <p class="small">By the boundless grace of the Almighty and with the blessings of our elders, we joyfully invite you and your family to the sacred wedding of</p>
         <p class="nm" data-k="groomFull"></p>
-        <p class="of" data-k="groomOf"></p>
-        <p class="with">with</p>
+        <p class="of" data-k="groomOf"></p>        <p class="with">with</p>
         <p class="nm" data-k="bride"></p>
         <p class="of" data-k="brideOf"></p>
         <p class="on" data-k="dateLong"></p>
@@ -806,12 +815,13 @@ footer{position:relative;z-index:2;text-align:center;padding:18px var(--gut-r) c
       </div>
       <div class="countbox">
         <h2 class="sec-title js-rise">The Celebration Begins In</h2>
-        <div class="count js-count" role="timer">
+        <div class="count js-count" role="timer" aria-label="Countdown to the wedding">
           <div><b id="cD">00</b><span>Days</span></div>
           <div><b id="cH">00</b><span>Hours</span></div>
           <div><b id="cM">00</b><span>Mins</span></div>
           <div><b id="cS">00</b><span>Secs</span></div>
         </div>
+        <p class="count-status" id="countStatus" aria-live="polite" hidden>The celebration has begun. Today is the day!</p>
         <a class="cal js-rise" id="calLink" target="_blank" rel="noopener"><span data-art="cal"></span> Add to Google Calendar</a>
       </div>
     </div>
@@ -978,6 +988,10 @@ const canMove = !!(window.gsap && window.ScrollTrigger) && !reduce;
 if (canMove) document.documentElement.classList.add('motion');
 
 const W = new Date(CONFIG.weddingDate);
+if (!Number.isFinite(W.getTime())) {
+  console.error("Invalid CONFIG.weddingDate. Use an ISO 8601 date with the India timezone.");
+  W.setTime(Date.now());
+}
 const fmt = o => new Intl.DateTimeFormat('en-IN', {timeZone:'Asia/Kolkata', ...o}).format(W);
 const data = {
   ...CONFIG,
@@ -1197,7 +1211,6 @@ function paintArt(root = document){
 
 paintArt();
 let rz; addEventListener('resize', () => { clearTimeout(rz); rz = setTimeout(() => document.querySelectorAll('.toran').forEach(toran), 200); });
-
 /* ---------- music ---------- */
 const tracks = {}; let current = null, muted = false;
 function track(k){
@@ -1381,7 +1394,7 @@ const evWrap = $('#events');
 CONFIG.events.forEach(ev => {
   const el = document.createElement('article');
   el.className = 'ev js-ev';
-  el.innerHTML = `<div class="win"><img decoding="async" src="img/${ev.img}.webp" alt=""></div><div class="info"><h3></h3><p class="when"></p><p class="where"></p><p class="vibe"></p></div>`;
+  el.innerHTML = `<div class="win"><img loading="lazy" decoding="async" src="img/${ev.img}.webp" alt=""></div><div class="info"><h3></h3><p class="when"></p><p class="where"></p><p class="vibe"></p></div>`;
   el.querySelector('img').alt = ev.name + ' illustration';
   el.querySelector('h3').textContent = ev.name;
   if (ev.hi) { const h = document.createElement('p'); h.className = 'hi'; h.textContent = ev.hi; el.querySelector('h3').after(h); }
@@ -1400,7 +1413,10 @@ if (!CONFIG.showRsvp) $('#s-rsvp').hidden = true;
 
 const pad = n => String(n).padStart(2, '0');
 function tick(){
-  let s = Math.max(0, Math.floor((W - Date.now()) / 1000));
+  const remaining = W.getTime() - Date.now();
+  const status = $("#countStatus");
+  if (status) status.hidden = remaining > 0;
+  let s = Math.max(0, Math.floor(remaining / 1000));
   $('#cD').textContent = pad(Math.floor(s / 86400)); s %= 86400;
   $('#cH').textContent = pad(Math.floor(s / 3600)); s %= 3600;
   $('#cM').textContent = pad(Math.floor(s / 60)); $('#cS').textContent = pad(s % 60);
@@ -1408,10 +1424,15 @@ function tick(){
 tick(); setInterval(tick, 1000);
 
 function buildWa(){
-  const name = $('#rName').value.trim() || '(your name)', yes = $('#attY').checked, n = $('#rCount').value;
-  const text = `Hi! RSVP for ${CONFIG.groom} & ${CONFIG.bride}'s wedding\nName: ${name}\n` + (yes ? `Coming: Yes\nGuests: ${n}` : `Coming: Sorry, can't make it`);
-  $('#waLink').href = `https://wa.me/${CONFIG.whatsapp}?text=${encodeURIComponent(text)}`;
-  $('#countField').style.display = yes ? '' : 'none';
+  const link = $("#waLink");
+  const phone = String(CONFIG.whatsapp || "").replace(/\D/g, "");
+  const validPhone = /^\d{10,15}$/.test(phone);
+  const name = $("#rName").value.trim() || "(your name)", yes = $("#attY").checked, n = $("#rCount").value;
+  const message = "Wedding RSVP for " + CONFIG.groom + " & " + CONFIG.bride + "\nName: " + name + "\n" + (yes ? "Coming: Yes\nGuests: " + n : "Coming: Sorry, cannot make it");
+  $("#countField").style.display = yes ? "" : "none";
+  if (!validPhone) { link.removeAttribute("href"); link.setAttribute("aria-disabled", "true"); link.textContent = "RSVP link is being configured"; return; }
+  link.href = "https://wa.me/" + phone + "?text=" + encodeURIComponent(message);
+  link.removeAttribute("aria-disabled"); link.textContent = "Send RSVP on WhatsApp";
 }
 ['input','change'].forEach(t => $('#rsvpForm').addEventListener(t, buildWa));
 $('#rsvpForm').addEventListener('submit', e => e.preventDefault());
